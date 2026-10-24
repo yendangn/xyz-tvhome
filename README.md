@@ -457,6 +457,10 @@ adb -s <ip-tv>:5555 shell "logcat -d | grep -E 'TvHome|FATAL|AndroidRuntime'"
   scripts/              build-web.mjs (chép và nén các theme được chọn), new-theme.mjs, preview.mjs
   ```
 
+- **Kiểm tra PR.** Mỗi pull request vào `main` chạy `check_pr` (GitHub Actions, `.github/workflows/check_pr.yml`): cài
+  thư viện của `scripts/` rồi build bản release. Build không thành công thì không merge được. APK của lần chạy nằm
+  trong mục Artifacts của lần chạy đó.
+
 - <a id="vi-prices"></a>**Nguồn giá.** Giá vàng, giá xăng dầu đi qua interface `Prices` (`app/src/main/java/com/xyz/tvhome/prices/`). Nguồn
   nào cũng trả về một `PriceBoard`, và chỉ `PriceBoard.toJson()` mới tạo JSON cho `core.js` đọc.
 

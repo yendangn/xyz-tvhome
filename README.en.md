@@ -461,6 +461,10 @@ adb -s <tv-ip>:5555 shell "logcat -d | grep -E 'TvHome|FATAL|AndroidRuntime'"
   scripts/              build-web.mjs (copies and minifies the chosen themes), new-theme.mjs, preview.mjs
   ```
 
+- **Pull request checks.** Every pull request into `main` runs `check_pr` (GitHub Actions,
+  `.github/workflows/check_pr.yml`): it installs the `scripts/` tools and builds the release APK. A pull request whose
+  build fails cannot be merged. The APK of each run is under that run's Artifacts.
+
 - <a id="en-prices"></a>**Prices.** Gold and fuel prices go through the `Prices` interface (`app/src/main/java/com/xyz/tvhome/prices/`).
   Every source hands over a `PriceBoard`; only `PriceBoard.toJson()` writes the JSON that `core.js` reads.
 
