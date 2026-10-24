@@ -1,0 +1,13 @@
+# Build output and caches
+build/
+app/build/
+.gradle/
+.kotlin/
+node_modules/
+.venv/
+
+# This machine only: the Android SDK path, the IDE's files
+local.properties
+.idea/
+*.iml
+.DS_Store

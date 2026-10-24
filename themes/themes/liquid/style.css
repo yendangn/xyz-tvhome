@@ -1,0 +1,11 @@
+/* The design blurs what is behind each card (backdrop-filter); over these soft blobs that changes next to nothing
+   and costs a weak TV a lot, so the glass is drawn without it. */
+:root { --ground: radial-gradient(circle at 10% 20%, #6A4BFF 0, rgba(106,75,255,0) 36%), radial-gradient(circle at 88% 10%, #F0509A 0, rgba(240,80,154,0) 32%),
+    radial-gradient(circle at 72% 88%, #12B5C9 0, rgba(18,181,201,0) 38%), radial-gradient(circle at 22% 95%, #F28A2E 0, rgba(242,138,46,0) 30%), #0B1030;
+  --surface: linear-gradient(140deg, rgba(255,255,255,.24), rgba(255,255,255,.07)); --edge: rgba(255,255,255,.38);
+  --lift: inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 0 rgba(255,255,255,.12), 0 24px 60px rgba(4,6,20,.35); --rule: rgba(255,255,255,.28);
+  --text: #FFFFFF; --muted: #DCE0EC; --label: #EEF1F7; --faint: #C9CEDD; --warm: #FFB3A8; --accent: #7CF29A; --on-accent: #0B0C0F;
+  --raised: rgba(255,255,255,.18); --raised-edge: rgba(255,255,255,.35); --icon: #F4F5F7;
+  --focus-bg: rgba(255,255,255,.86); --focus-ink: #0B0C0F; --focus-edge: rgba(255,255,255,.9); --focus-ico: #0B0C0F; --focus-icon: #F4F5F7;
+  --focus-lift: inset 0 1px 0 #FFFFFF, 0 24px 60px rgba(4,6,20,.4);
+  --gold-bg: rgba(245,196,81,.22); --gold-ink: #FFD66B; --fuel-bg: rgba(125,196,245,.22); --fuel-ink: #A8DBFF; }

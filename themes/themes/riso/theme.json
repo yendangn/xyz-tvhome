@@ -1,0 +1,42 @@
+{
+  "name": "Risograph",
+  "order": 30,
+  "panel": {
+    "scrim": "rgba(0,120,191,.35)",
+    "panel": "#F5F0E6",
+    "ink": "#0078BF",
+    "border": 5,
+    "borderColor": "#0078BF",
+    "radius": 0,
+    "shadow": {
+      "dx": 14,
+      "dy": 14,
+      "color": "#FF48B0"
+    },
+    "titleFont": "fonts/panel/bricolage_extrabold.ttf",
+    "titleSize": 52,
+    "titleColor": "#FF48B0",
+    "cardRadius": 0,
+    "imgRadius": 0,
+    "imgBorder": 3,
+    "imgBorderColor": "#0078BF",
+    "nameFont": "fonts/panel/bricolage_extrabold.ttf",
+    "nameSize": 30,
+    "tagFont": "fonts/panel/bevietnampro_bold.ttf",
+    "tag": "#F5F0E6",
+    "tagBg": "#0078BF",
+    "tagPadV": 3,
+    "tagPadH": 10,
+    "tagTilt": -3,
+    "sel": "#0078BF",
+    "selWidth": 4,
+    "selBg": "#FFE800",
+    "selLiftX": -4,
+    "selLiftY": -4,
+    "selShadow": {
+      "dx": 8,
+      "dy": 8,
+      "color": "#FF48B0"
+    }
+  }
+}

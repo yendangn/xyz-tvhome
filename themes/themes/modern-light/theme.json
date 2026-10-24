@@ -1,0 +1,28 @@
+{
+  "name": "Hiện đại sáng",
+  "order": 70,
+  "panel": {
+    "scrim": "rgba(17,19,24,.35)",
+    "panel": "#FFFFFF",
+    "ink": "#111318",
+    "border": 1,
+    "borderColor": "#E3E5E9",
+    "radius": 32,
+    "elevation": 24,
+    "titleFont": "fonts/panel/bevietnampro_semibold.ttf",
+    "titleSize": 44,
+    "cardRadius": 20,
+    "imgRadius": 14,
+    "nameFont": "fonts/panel/bevietnampro_semibold.ttf",
+    "nameSize": 30,
+    "tagFont": "fonts/panel/bevietnampro_bold.ttf",
+    "tag": "#FFFFFF",
+    "tagBg": "#2563EB",
+    "tagRadius": 999,
+    "tagPadV": 4,
+    "tagPadH": 12,
+    "sel": "#2563EB",
+    "selWidth": 4,
+    "selBg": "#EEF0F3"
+  }
+}

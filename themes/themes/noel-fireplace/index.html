@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Noel lò sưởi</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <!-- Falling snow, behind everything: three layers of flakes, moved by fireplace.js. -->
+  <div class="snow s1" aria-hidden="true"></div>
+  <div class="snow s2" aria-hidden="true"></div>
+  <div class="snow s3" aria-hidden="true"></div>
+
+  <div class="bar">
+    <div class="hello"><span class="dot"></span><span>Merry Christmas, <span data-owner>Yên Đặng</span></span></div>
+    <div class="btns">
+      <div class="btn" data-nav="top" data-action="themes" aria-label="Giao diện">
+        <svg class="pal" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path class="t" d="M12 3a9 9 0 0 1 0 18z"/></svg>
+      </div>
+      <div class="btn" data-nav="top" data-action="wifi" aria-label="Wi-Fi">
+        <svg class="wifi" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path class="w3" d="M2 8.5a15 15 0 0 1 20 0"/><path class="w2" d="M5.5 12.5a10 10 0 0 1 13 0"/><path class="w1" d="M9 16.3a5 5 0 0 1 6 0"/><circle class="w0" cx="12" cy="20" r="1.2" stroke="none"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="mast">
+    <div class="clock" id="clock"></div>
+    <div class="day">
+      <div class="wk" id="weekday"></div>
+      <div class="dt" id="dateText"></div>
+    </div>
+  </div>
+
+  <div class="blocks">
+    <section class="block cal" id="cal">
+      <div class="top"><h2 id="calTitle"></h2><span id="calSpan"></span></div>
+      <div class="wd"><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span></div>
+      <div class="grid" id="calGrid"></div>
+    </section>
+
+    <section class="block xmas" aria-label="Đếm ngược Giáng sinh">
+      <!-- The fireplace, in layers (back to front): its glow, the mantle and firebox, three flames, the logs. The glow
+           and flames are their own elements so fireplace.js can flicker them without repainting the rest. -->
+      <div class="fire" aria-hidden="true">
+        <div class="glow"></div>
+        <svg width="330" height="330" viewBox="0 0 300 300">
+          <rect x="34" y="74" width="232" height="226" rx="6" fill="#E8D9C6"/>
+          <rect x="14" y="58" width="272" height="22" rx="5" fill="#F4EADC"/>
+          <path d="M84 300 V178 Q84 136 150 136 Q216 136 216 178 V300 Z" fill="#1E0A0A"/>
+          <path d="M14 58 Q 49 72 84 58 Q 119 72 150 58 Q 181 72 216 58 Q 251 72 286 58" fill="none" stroke="#2E7D4F" stroke-width="9" stroke-linecap="round"/>
+          <g fill="#E5303A"><circle cx="49" cy="66" r="4.5"/><circle cx="119" cy="66" r="4.5"/><circle cx="181" cy="66" r="4.5"/><circle cx="251" cy="66" r="4.5"/></g>
+          <g fill="#FFD27A"><circle cx="84" cy="60" r="3.5"/><circle cx="150" cy="60" r="3.5"/><circle cx="216" cy="60" r="3.5"/></g>
+          <path d="M44 92 V138 Q44 150 56 150 H76 Q86 150 86 140 Q86 130 76 130 H66 V92 Z" fill="#C8102E"/>
+          <rect x="40" y="80" width="30" height="14" rx="4" fill="#F7F2EA"/>
+          <path d="M234 92 V138 Q234 150 246 150 H266 Q276 150 276 140 Q276 130 266 130 H256 V92 Z" fill="#C8102E"/>
+          <rect x="230" y="80" width="30" height="14" rx="4" fill="#F7F2EA"/>
+        </svg>
+        <svg class="fl f1" width="330" height="330" viewBox="0 0 300 300"><path d="M150 168 C 186 206 196 240 176 270 C 168 282 132 282 124 270 C 104 240 116 206 150 168 Z" fill="#E5482F"/></svg>
+        <svg class="fl f2" width="330" height="330" viewBox="0 0 300 300"><path d="M150 196 C 174 222 178 248 166 266 C 160 276 140 276 134 266 C 122 248 128 222 150 196 Z" fill="#F59A2E"/></svg>
+        <svg class="fl f3" width="330" height="330" viewBox="0 0 300 300"><path d="M150 224 C 162 238 164 254 158 264 C 155 270 145 270 142 264 C 136 254 138 238 150 224 Z" fill="#FFD27A"/></svg>
+        <svg width="330" height="330" viewBox="0 0 300 300">
+          <rect x="104" y="272" width="92" height="12" rx="6" fill="#6B3A22"/>
+          <rect x="112" y="284" width="76" height="12" rx="6" fill="#4E2A18"/>
+        </svg>
+      </div>
+      <div class="head">
+        <h2 id="xmasName"></h2>
+        <div class="sub" id="xmasDate"></div>
+      </div>
+      <div class="count"><span class="n" id="xmasDays"></span><span class="l" id="xmasLabel"></span></div>
+    </section>
+  </div>
+
+  <nav class="dock">
+    <div class="tile" data-nav="dock" data-pkg="com.google.android.youtube.tv">
+      <span class="ico"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path class="f" d="M10 9l5 3-5 3z"/></svg></span>
+      <span>YouTube</span>
+    </div>
+    <div class="tile" data-nav="dock" data-pkg="com.android.vending">
+      <span class="ico"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linejoin="round"><path d="M4 8h16l-1.5 13h-13z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/><path class="f" d="M10.5 12l4 2.5-4 2.5z"/></svg></span>
+      <span>Cửa hàng</span>
+    </div>
+    <div class="tile" data-nav="dock" data-action="settings">
+      <span class="ico"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/><circle cx="12" cy="12" r="6.5"/></svg></span>
+      <span>Cài đặt</span>
+    </div>
+    <div class="tile" data-nav="dock" data-action="apps">
+      <span class="ico"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></svg></span>
+      <span>Ứng dụng</span>
+    </div>
+  </nav>
+</div>
+<script src="../../core.js"></script>
+<script src="fireplace.js"></script>
+</body>
+</html>

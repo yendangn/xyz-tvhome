@@ -1,0 +1,12 @@
+{
+  "name": "tv-home-build",
+  "private": true,
+  "description": "Tools for themes/: build-web.mjs (the app's assets, run by Gradle) and preview.mjs (theme previews). Install here: npm --prefix scripts install",
+  "type": "module",
+  "devDependencies": {
+    "clean-css": "5.3.3",
+    "html-minifier-terser": "7.2.0",
+    "sharp": "0.35.5",
+    "terser": "5.51.2"
+  }
+}

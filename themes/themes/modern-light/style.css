@@ -1,0 +1,5 @@
+:root { --ground: #F2F3F5; --surface: #FFFFFF; --edge: #E3E5E9; --rule: #E3E5E9;
+  --text: #111318; --muted: #5F6672; --label: #3A3F48; --faint: #6B7280; --warm: #D2412E; --accent: #2563EB; --on-accent: #FFFFFF;
+  --raised: #EEF0F3; --icon: #111318;
+  --focus-bg: #111318; --focus-ink: #FFFFFF; --focus-edge: #111318; --focus-ico: #FFFFFF; --focus-icon: #111318;
+  --gold-bg: #FBF1D9; --gold-ink: #A86F00; --fuel-bg: #E3F0FB; --fuel-ink: #1F6FB2; }

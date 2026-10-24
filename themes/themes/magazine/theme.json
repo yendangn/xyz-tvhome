@@ -1,0 +1,31 @@
+{
+  "name": "Bìa tạp chí",
+  "order": 20,
+  "panel": {
+    "scrim": "rgba(20,20,20,.55)",
+    "panel": "#FFFFFF",
+    "ink": "#141414",
+    "radius": 0,
+    "shadow": {
+      "dx": 16,
+      "dy": 16,
+      "color": "#FFC72C"
+    },
+    "titleFont": "fonts/panel/fraunces_black_italic.ttf",
+    "titleSize": 64,
+    "titleRule": 4,
+    "titlePad": 16,
+    "cardRadius": 0,
+    "imgRadius": 0,
+    "nameFont": "fonts/panel/fraunces_black.ttf",
+    "nameSize": 32,
+    "tagFont": "fonts/panel/bevietnampro_bold.ttf",
+    "tag": "#FFFFFF",
+    "tagBg": "#F2542D",
+    "tagPadV": 4,
+    "tagPadH": 12,
+    "sel": "#141414",
+    "selWidth": 6,
+    "selBg": "#FFC72C"
+  }
+}
