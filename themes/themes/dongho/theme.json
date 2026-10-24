@@ -1,0 +1,30 @@
+{
+  "name": "Tranh Đông Hồ",
+  "order": 170,
+  "panel": {
+    "scrim": "rgba(42,31,23,.4)",
+    "panel": "#F6E2C7",
+    "ink": "#2A1F17",
+    "border": 2,
+    "borderColor": "#2A1F17",
+    "radius": 4,
+    "titleFont": "fonts/panel/bevietnampro_semibold.ttf",
+    "titleSize": 44,
+    "cardRadius": 4,
+    "imgRadius": 2,
+    "imgBorder": 1.5,
+    "imgBorderColor": "#2A1F17",
+    "nameFont": "fonts/panel/bevietnampro_semibold.ttf",
+    "nameSize": 30,
+    "tagFont": "fonts/panel/bevietnampro_bold.ttf",
+    "tag": "#F8EEDC",
+    "tagBg": "#B03A52",
+    "tagRadius": 2,
+    "tagPadV": 4,
+    "tagPadH": 12,
+    "sel": "#2F6266",
+    "selWidth": 4,
+    "selBg": "#EFD1AB",
+    "footInk": "#2A1F17"
+  }
+}

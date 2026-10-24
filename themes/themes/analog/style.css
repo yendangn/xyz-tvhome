@@ -1,0 +1,47 @@
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Medium.woff2') format('woff2'); font-weight: 500; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-SemiBold.woff2') format('woff2'); font-weight: 600; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Bold.woff2') format('woff2'); font-weight: 700; }
+
+/* A pure black screen with one analog clock in the middle; everything else stays quiet around it. */
+:root { --ground: #000; --card: #0E0E0E; --raised: #1C1C1C; --line: #1F1F1F; --text: #EDEDED; --muted: #8C8C8C;
+  --accent: #FF4F2E; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: var(--ground); }
+#stage { width: 1920px; height: 1080px; transform-origin: 0 0; position: absolute; left: 0; top: 0; box-sizing: border-box;
+  padding: 56px 80px; background: var(--ground); color: var(--text); font-family: 'BVP', sans-serif; font-weight: 500;
+  font-variant-numeric: tabular-nums; display: flex; flex-direction: column; overflow: hidden; }
+
+/* Top left: the greeting, and the date on the line below it. */
+.bar { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; flex-shrink: 0; }
+.hello { font-size: 24px; font-weight: 600; color: var(--muted); }
+.hello span { color: var(--text); }
+
+.main { flex-grow: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
+
+/* The dial: 620 px, ticks in an SVG painted once, hands as HTML layers turned by analog.js. */
+.dial { width: 620px; height: 620px; position: relative; flex-shrink: 0; }
+.ticks { position: absolute; left: 0; top: 0; }
+.ticks .m { stroke: #333; stroke-width: 3; stroke-linecap: round; }
+.ticks .h { stroke: var(--text); stroke-width: 8; stroke-linecap: round; }
+/* Each hand stands on the dial's centre and turns about its foot. */
+.hand { position: absolute; left: 50%; bottom: 50%; transform-origin: 50% 100%; will-change: transform; border-radius: 999px; }
+.hour { width: 16px; height: 170px; margin-left: -8px; background: var(--text); }
+.min { width: 10px; height: 262px; margin-left: -5px; background: var(--text); }
+/* The second hand runs 56 px past the centre, so its foot sits 56 px below. Each second it glides to the next mark in
+   a quarter of a second, overshooting a hair as a quartz hand does, then rests: the TV draws only during the glide. */
+.sec { width: 4px; height: 330px; margin-left: -2px; bottom: calc(50% - 56px); transform-origin: 50% 274px; background: var(--accent);
+  transition: transform .25s cubic-bezier(.3, 1.45, .55, 1); }
+/* No glide while analog.js puts the hands in place at once (on load, and when Home comes back). */
+.dial.still .hand { transition: none; }
+.cap { position: absolute; left: 50%; top: 50%; width: 38px; height: 38px; margin: -19px 0 0 -19px; border-radius: 50%;
+  background: var(--accent); border: 6px solid var(--ground); box-sizing: border-box; }
+
+.date { font-size: 20px; font-weight: 500; letter-spacing: .02em; color: var(--muted); }
+
+/* Four round icon buttons along the bottom; the focused one keeps its dark ground and gets a ring. */
+.dock { flex-shrink: 0; display: flex; justify-content: center; align-items: center; gap: 28px; height: 104px; }
+.tile { width: 88px; height: 88px; border-radius: 44px; background: var(--card); border: 1px solid var(--line); color: var(--text);
+  box-sizing: border-box; display: flex; align-items: center; justify-content: center; outline: 4px solid transparent;
+  outline-offset: 6px; }
+.tile.focus { outline-color: var(--accent); }
+.tile.off { color: #5A5A5A; }
+.tile.off .w1, .tile.off .w2, .tile.off .w3 { opacity: .3; }

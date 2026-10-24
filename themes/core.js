@@ -3,7 +3,9 @@
 // below; anything a theme leaves out is skipped.
 //
 //   Text:  clock, hello, weekday, weekdayUpper, dayNum, monthNum, monthName, monthYear, monthYearUpper, dateLong, dateText,
-//          lunarLong, lunarShort, lunarSlash, ccYear ("Năm Bính Ngọ"), ccYearName ("Bính Ngọ"), ccMonth, ccDay,
+//          lunarLong, lunarShort, lunarSlash, lunarLine ("15 tháng 9 âm lịch"), dayPart ("buổi chiều": the greeting
+//          "Chào <span id=dayPart></span>, …", following the hour), ccYear ("Năm Bính Ngọ"), ccYearName ("Bính Ngọ"),
+//          ccMonth, ccDay,
 //          calTitle, calSpan, calGrid (cells: .cell.sun/.special/.today with <b>day</b><i>lunar</i>), cal (.six),
 //          sjc, ring, sjcBuy, ringBuy, e10, e5, do, priceTime
 //   Focus: [data-nav="top"] and [data-nav="dock"]; data-action="wifi" | "themes" | "music" | "apps" | "settings", or
@@ -78,6 +80,10 @@
   var WEEK = ['Chủ Nhật','Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm','Thứ Sáu','Thứ Bảy'];
   var MONTH = ['Một','Hai','Ba','Tư','Năm','Sáu','Bảy','Tám','Chín','Mười','Mười Một','Mười Hai'];
   function mName(l) { return l.m + (l.leap ? ' nhuận' : ''); }
+  // The lunar month by its name where it has one: Giêng for the 1st, Chạp for the 12th.
+  function mWord(l) { return (l.m == 1 ? 'Giêng' : l.m == 12 ? 'Chạp' : l.m) + (l.leap ? ' nhuận' : ''); }
+  // The part of the day a greeting names: morning from 5, noon from 11, afternoon from 13, evening from 18.
+  function dayPart(h) { return h < 5 ? 'buổi tối' : h < 11 ? 'buổi sáng' : h < 13 ? 'buổi trưa' : h < 18 ? 'buổi chiều' : 'buổi tối'; }
   function pad(n) { return ('0' + n).slice(-2); }
 
   // ---- Drawing ----
@@ -97,6 +103,7 @@
     set('dateText', d + ' tháng ' + m + ', ' + y);
     set('monthYear', 'tháng ' + m + ', ' + y);
     set('lunarLong', 'Âm lịch ' + l.d + ' tháng ' + mName(l));
+    set('lunarLine', l.d + ' tháng ' + mWord(l) + ' âm lịch');
     set('lunarShort', l.d + '/' + mName(l));
     set('lunarSlash', l.d + ' / ' + mName(l));
     set('ccYear', 'Năm ' + CAN[(l.y + 6) % 10] + ' ' + CHI[(l.y + 8) % 12]);
@@ -124,7 +131,7 @@
   }
 
   // The clock's nodes are made once; each tick only changes their text, and hours:minutes only once a minute.
-  var clockHM = null, clockSec = null;
+  var clockHM = null, clockSec = null, shownHour = -1;
   function tick() {
     var now = new Date();
     var clock = $('clock');
@@ -141,6 +148,7 @@
     }
     var key = now.toDateString();
     if (key != shownDay) { shownDay = key; drawDay(now); }
+    if (now.getHours() != shownHour) { shownHour = now.getHours(); set('dayPart', dayPart(shownHour)); }
   }
 
   // TV.prices() is the app's PriceBoard (prices/PriceBoard.kt): {sjc, ring: {buy, sell, t}, e10, e5, do: {price, t}},

@@ -41,7 +41,8 @@ This makes a working page, copied from the "modern" theme, that stands alone (it
 - `<script src="../../core.js"></script>` last in `<body>`. Paths are relative: `../../fonts/…`, own images beside
   `index.html`.
 - Data ids: `clock` (core.js adds a `.sec` span: hide it with `.clock .sec { display: none; }` when the design shows
-  HH:MM), `weekday`, `dayNum`, `monthNum`, `dateText`, `dateLong`, `lunarLong`, `lunarShort`, `ccYear`/`ccMonth`/`ccDay`,
+  HH:MM), `weekday`, `dayNum`, `monthNum`, `dateText`, `dateLong`, `lunarLong`, `lunarShort`, `lunarLine` ("15 tháng 9 âm lịch"), `dayPart` ("buổi chiều", for a greeting
+  "Chào <span id="dayPart"></span>, …" that follows the hour), `ccYear`/`ccMonth`/`ccDay`,
   calendar `cal` (gets `.six` for 6-row months: shrink `.cell`), `calTitle`, `calSpan`, `calGrid` (cells
   `.cell` with `<b>` day and `<i>` lunar; `.sun`, `.special`, `.today`), prices `sjc`, `ring`, `sjcBuy`, `ringBuy`,
   `e10`, `e5`, `do`, `priceTime`. Leave out what the design doesn't show.

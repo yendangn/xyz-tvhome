@@ -1,0 +1,28 @@
+{
+  "name": "Đồng hồ kim",
+  "order": 120,
+  "panel": {
+    "scrim": "rgba(0,0,0,.7)",
+    "panel": "#0E0E0E",
+    "ink": "#EDEDED",
+    "border": 1,
+    "borderColor": "#1F1F1F",
+    "radius": 32,
+    "titleFont": "fonts/panel/bevietnampro_semibold.ttf",
+    "titleSize": 44,
+    "cardRadius": 20,
+    "imgRadius": 14,
+    "nameFont": "fonts/panel/bevietnampro_semibold.ttf",
+    "nameSize": 30,
+    "tagFont": "fonts/panel/bevietnampro_bold.ttf",
+    "tag": "#000000",
+    "tagBg": "#FF4F2E",
+    "tagRadius": 999,
+    "tagPadV": 4,
+    "tagPadH": 12,
+    "sel": "#FF4F2E",
+    "selWidth": 4,
+    "selBg": "#1C1C1C",
+    "showSource": false
+  }
+}

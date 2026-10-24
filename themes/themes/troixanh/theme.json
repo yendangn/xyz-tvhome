@@ -1,0 +1,29 @@
+{
+  "name": "Trời xanh",
+  "order": 210,
+  "panel": {
+    "scrim": "rgba(14,42,59,.35)",
+    "panel": "#EEF3F5",
+    "ink": "#0E2A3B",
+    "border": 1,
+    "borderColor": "#FFFFFF",
+    "radius": 28,
+    "elevation": 24,
+    "titleFont": "fonts/panel/bevietnampro_semibold.ttf",
+    "titleSize": 44,
+    "cardRadius": 20,
+    "imgRadius": 14,
+    "nameFont": "fonts/panel/bevietnampro_semibold.ttf",
+    "nameSize": 30,
+    "tagFont": "fonts/panel/bevietnampro_bold.ttf",
+    "tag": "#FFFFFF",
+    "tagBg": "#2F6B3A",
+    "tagRadius": 999,
+    "tagPadV": 4,
+    "tagPadH": 12,
+    "sel": "#2F6B3A",
+    "selWidth": 4,
+    "selBg": "#FFFFFF",
+    "showSource": false
+  }
+}

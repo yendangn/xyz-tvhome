@@ -1,0 +1,29 @@
+{
+  "name": "Hồ Gươm thu",
+  "order": 200,
+  "panel": {
+    "scrim": "rgba(43,42,40,.35)",
+    "panel": "#F4F2EE",
+    "ink": "#2B2A28",
+    "border": 1,
+    "borderColor": "#FFFFFF",
+    "radius": 28,
+    "elevation": 24,
+    "titleFont": "fonts/panel/bevietnampro_semibold.ttf",
+    "titleSize": 44,
+    "cardRadius": 20,
+    "imgRadius": 14,
+    "nameFont": "fonts/panel/bevietnampro_semibold.ttf",
+    "nameSize": 30,
+    "tagFont": "fonts/panel/bevietnampro_bold.ttf",
+    "tag": "#FFFFFF",
+    "tagBg": "#B5531F",
+    "tagRadius": 999,
+    "tagPadV": 4,
+    "tagPadH": 12,
+    "sel": "#B5531F",
+    "selWidth": 4,
+    "selBg": "#FFFFFF",
+    "showSource": false
+  }
+}

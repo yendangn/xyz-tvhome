@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Đồng hồ kim</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <div class="bar">
+    <span class="hello">Xin chào, <span data-owner>Yên Đặng</span></span>
+    <div class="date"><span id="weekday"></span> · <span id="dateText"></span></div>
+  </div>
+
+  <main class="main">
+    <!-- The dial is drawn once (analog.js adds the ticks); only the three hands move. -->
+    <div class="dial" id="dial">
+      <svg class="ticks" id="ticks" width="620" height="620" viewBox="0 0 620 620"></svg>
+      <div class="hand hour" id="handH"></div>
+      <div class="hand min" id="handM"></div>
+      <div class="hand sec" id="handS"></div>
+      <div class="cap"></div>
+    </div>
+  </main>
+
+  <!-- One row of round icons: the theme and Wi-Fi buttons sit in the dock too, so left/right reaches all four. -->
+  <nav class="dock">
+    <div class="tile" data-nav="dock" data-pkg="com.google.android.youtube.tv" aria-label="YouTube"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg></div>
+    <div class="tile" data-nav="dock" data-action="settings" aria-label="Cài đặt"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/><circle cx="12" cy="12" r="6.5"/></svg></div>
+    <div class="tile" data-nav="dock" data-action="themes" aria-label="Giao diện"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></div>
+    <div class="tile" data-nav="dock" data-action="wifi" aria-label="Wi-Fi"><svg class="wifi" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path class="w3" d="M2 8.5a15 15 0 0 1 20 0"/><path class="w2" d="M5.5 12.5a10 10 0 0 1 13 0"/><path class="w1" d="M9 16.3a5 5 0 0 1 6 0"/><circle class="w0" cx="12" cy="20" r="1.2" fill="currentColor" stroke="none"/></svg></div>
+  </nav>
+</div>
+<script src="../../core.js"></script>
+<script src="analog.js"></script>
+</body>
+</html>
