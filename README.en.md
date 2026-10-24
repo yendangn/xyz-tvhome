@@ -45,9 +45,16 @@
 | ![Hiện đại tối giản](docs/screenshots/modern.webp) **Hiện đại tối giản** (`modern`) | ![Hiện đại sáng](docs/screenshots/modern-light.webp) **Hiện đại sáng** (`modern-light`) |
 | ![Liquid Glass](docs/screenshots/liquid.webp) **Liquid Glass** (`liquid`) | ![Neon Ring](docs/screenshots/neon-ring.webp) **Neon Ring** (`neon-ring`) |
 | ![Noel](docs/screenshots/noel.webp) **Noel** (`noel`) | ![Noel lò sưởi](docs/screenshots/noel-fireplace.webp) **Noel lò sưởi** (`noel-fireplace`) |
-| ![Tết](docs/screenshots/tet.webp) **Tết** (`tet`) | |
+| ![Tết](docs/screenshots/tet.webp) **Tết** (`tet`) | ![Đồng hồ kim](docs/screenshots/analog.webp) **Đồng hồ kim** (`analog`) |
+| ![Bắc Âu](docs/screenshots/nordic.webp) **Bắc Âu** (`nordic`) | ![Cây lá](docs/screenshots/leaf.webp) **Cây lá** (`leaf`) |
+| ![Indochine](docs/screenshots/indochine.webp) **Indochine** (`indochine`) | ![Gốm Bát Tràng](docs/screenshots/battrang.webp) **Gốm Bát Tràng** (`battrang`) |
+| ![Tranh Đông Hồ](docs/screenshots/dongho.webp) **Tranh Đông Hồ** (`dongho`) | ![Cà phê chill](docs/screenshots/cafe.webp) **Cà phê chill** (`cafe`) |
+| ![Rooftop Sài Gòn](docs/screenshots/rooftop.webp) **Rooftop Sài Gòn** (`rooftop`) | ![Hồ Gươm thu](docs/screenshots/hoguom.webp) **Hồ Gươm thu** (`hoguom`) |
+| ![Trời xanh](docs/screenshots/troixanh.webp) **Trời xanh** (`troixanh`) | ![Theme picker](docs/screenshots/picker.webp) **Theme picker** |
 
-Screenshots taken on a VinSmart 4K TV (1920×1080) on 23/10/2026.
+Screenshots taken on a VinSmart 4K TV (1920×1080) on 23 and 24/10/2026, except Đồng hồ kim (analog clock), which is a preview rendered on a computer.
+
+The palette button at the top opens the theme picker: it slides up over the lower half of the screen with a preview of each theme. The theme in use is marked "Đang dùng" (in use).
 
 ## What is TV Home?
 
@@ -60,7 +67,7 @@ TV Home is a home-made home screen for Android TV. It replaces the TV's default 
 - big tiles for YouTube, Play Store, Settings and the list of apps
 - a button to switch themes. The Noel theme also plays music.
 
-It comes with 11 themes (pictures above), and you can add more. It was made and tested on a VinSmart 4K TV
+It comes with 12 themes (pictures above), and you can add more. It was made and tested on a VinSmart 4K TV
 (`VINATV_4K`, model `TR2001`): Android 9, 2 GB RAM, 1920×1080 screen, ARMv7 chip.
 
 ## How does it work?
@@ -245,7 +252,8 @@ change it freely. Do not edit `themes/shared/modern.css`: other themes share it.
   | Group | Ids |
   |---|---|
   | Clock, date | `clock` (adds a `.sec` span for seconds; for HH:MM add `.clock .sec { display: none; }`), `hello`, `weekday`, `dayNum`, `monthNum`, `monthName`, `dateText`, `dateLong` |
-  | Lunar calendar | `lunarLong`, `lunarShort`, `lunarSlash`, `ccYear`, `ccYearName`, `ccMonth`, `ccDay` |
+  | Lunar calendar | `lunarLong`, `lunarShort`, `lunarSlash`, `lunarLine` ("15 tháng 9 âm lịch"), `ccYear`, `ccYearName`, `ccMonth`, `ccDay` |
+  | Greeting by time of day | `dayPart`: "buổi sáng" (5–11 h), "buổi trưa" (11–13), "buổi chiều" (13–18), "buổi tối". Use as `Chào <span id="dayPart"></span>, <span data-owner>…</span>` |
   | Month grid | `cal` (gets `.six` for 6-row months), `calTitle`, `calSpan`, `calGrid` (each `.cell` has `<b>` for the day and `<i>` for the lunar day; classes `.sun`, `.special`, `.today`) |
   | Prices | `sjc`, `ring`, `sjcBuy`, `ringBuy`, `e10`, `e5`, `do`, `priceTime` |
 
@@ -460,10 +468,6 @@ adb -s <tv-ip>:5555 shell "logcat -d | grep -E 'TvHome|FATAL|AndroidRuntime'"
     src/public/         LivePrices: the price source, empty by default, with an example in a comment
   scripts/              build-web.mjs (copies and minifies the chosen themes), new-theme.mjs, preview.mjs
   ```
-
-- **Pull request checks.** Every pull request into `main` runs `check_pr` (GitHub Actions,
-  `.github/workflows/check_pr.yml`): it installs the `scripts/` tools and builds the release APK. A pull request whose
-  build fails cannot be merged. The APK of each run is under that run's Artifacts.
 
 - <a id="en-prices"></a>**Prices.** Gold and fuel prices go through the `Prices` interface (`app/src/main/java/com/xyz/tvhome/prices/`).
   Every source hands over a `PriceBoard`; only `PriceBoard.toJson()` writes the JSON that `core.js` reads.

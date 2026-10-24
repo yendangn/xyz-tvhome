@@ -1,0 +1,30 @@
+{
+  "name": "Indochine",
+  "order": 150,
+  "panel": {
+    "scrim": "rgba(42,33,24,.35)",
+    "panel": "#FBF4E2",
+    "ink": "#2A2118",
+    "border": 1,
+    "borderColor": "#E2CC94",
+    "radius": 28,
+    "elevation": 24,
+    "titleFont": "fonts/panel/bevietnampro_semibold.ttf",
+    "titleSize": 44,
+    "cardRadius": 20,
+    "imgRadius": 14,
+    "imgBorder": 1,
+    "imgBorderColor": "#E2CC94",
+    "nameFont": "fonts/panel/bevietnampro_semibold.ttf",
+    "nameSize": 30,
+    "tagFont": "fonts/panel/bevietnampro_bold.ttf",
+    "tag": "#FFF6E3",
+    "tagBg": "#B5482F",
+    "tagRadius": 999,
+    "tagPadV": 4,
+    "tagPadH": 12,
+    "sel": "#2F7F68",
+    "selWidth": 4,
+    "selBg": "#F2E2B8"
+  }
+}

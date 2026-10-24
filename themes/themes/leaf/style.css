@@ -1,0 +1,106 @@
+/* Cây lá: a deep forest-green night with two faint leaves (design "N. Cây lá"), on the layout of the modern themes. */
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-ExtraLight.woff2') format('woff2'); font-weight: 200; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Light.woff2') format('woff2'); font-weight: 300; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Regular.woff2') format('woff2'); font-weight: 400; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Medium.woff2') format('woff2'); font-weight: 500; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-SemiBold.woff2') format('woff2'); font-weight: 600; }
+
+:root {
+  --forest: #0F1D17; --card: #162820; --edge: #24392D; --well: #20362A; --btn: #172A21; --btn-edge: #2A3F33;
+  --text: #EDF2EC; --muted: #A6B7AA; --faint: #93A597; --warm: #E9A38F; --accent: #9CCB8F; --on-accent: #0F1D17;
+  --moss: #22291B; --moss-edge: #333C26; --moss-muted: #B4B8A0; --moss-soft: #D3D6C2; --moss-rule: #384230;
+  --lake: #142826; --lake-edge: #22393A; --lake-muted: #A2B8B5; --lake-soft: #CBD8D6; --lake-badge: #22403F;
+  --focus-bg: #E4EDE2;
+}
+html, body { margin: 0; height: 100%; overflow: hidden; background: #000; }
+#stage { width: 1920px; height: 1080px; transform-origin: 0 0; position: absolute; left: 0; top: 0; box-sizing: border-box;
+  padding: 64px 88px; background: var(--forest); color: var(--text); font-family: 'BVP', sans-serif; font-weight: 400;
+  display: flex; flex-direction: column; gap: 32px; overflow: hidden; }
+/* Everything sits above the leaves. */
+#stage > * { position: relative; }
+#stage > .leaves { position: absolute; right: -120px; top: -180px; stroke: var(--accent); opacity: .12; }
+
+.bar { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+.hello { font-size: 26px; color: var(--muted); }
+.btns { display: flex; gap: 14px; }
+.btn { width: 56px; height: 56px; border-radius: 28px; border: 1px solid var(--btn-edge); background: var(--btn); box-sizing: border-box;
+  display: flex; align-items: center; justify-content: center; outline: 3px solid transparent; outline-offset: 5px; }
+.btn.focus { outline-color: var(--accent); background: var(--well); }
+.btn .pal { stroke: var(--text); }
+.btn .pal circle { fill: var(--text); stroke: none; }
+.btn .wifi { stroke: var(--accent); }
+.btn .wifi .w0 { fill: var(--accent); }
+.btn.off .wifi { stroke: var(--faint); }
+.btn.off .wifi .w0 { fill: var(--faint); }
+.btn.off .w1, .btn.off .w2, .btn.off .w3 { opacity: .3; }
+
+.mast { display: flex; align-items: flex-end; justify-content: space-between; height: 220px; }
+.clock { font-weight: 200; font-size: 240px; line-height: .82; letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
+/* Hours and minutes only, as the design shows. */
+.clock .sec { display: none; }
+.day { text-align: right; padding-bottom: 8px; }
+.day .wk { font-size: 60px; font-weight: 500; line-height: 1; letter-spacing: -.02em; }
+.day .dt { font-size: 30px; font-weight: 300; color: var(--muted); margin-top: 16px; }
+
+.blocks { display: grid; grid-template-columns: 760px minmax(0, 1fr) minmax(0, 1fr); gap: 24px; height: 400px; }
+.block { border-radius: 28px; box-sizing: border-box; display: flex; flex-direction: column; border: 1px solid; }
+.block h2 { margin: 0; font-size: 30px; font-weight: 500; }
+.head { display: flex; justify-content: space-between; align-items: baseline; }
+.unit { font-size: 17px; }
+
+.cal { background: var(--card); border-color: var(--edge); padding: 28px 32px; gap: 10px; }
+.cal .top { display: flex; justify-content: space-between; align-items: baseline; }
+.cal .top span { font-size: 18px; color: var(--muted); }
+.cal .wd { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); font-size: 16px; font-weight: 500; color: var(--muted); letter-spacing: .06em; }
+.cal .wd span:last-child { color: var(--warm); }
+.cal .grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.cell { height: 44px; display: flex; align-items: baseline; gap: 5px; padding: 8px 0 0 10px; box-sizing: border-box; border-radius: 22px; }
+.cell b { font-size: 22px; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--text); }
+.cell i { font-style: normal; font-size: 12px; color: var(--faint); }
+.cell.sun b, .cell.special i { color: var(--warm); }
+.cell.special i { font-weight: 600; }
+.cell.today { background: var(--accent); }
+.cell.today b, .cell.today i { color: var(--on-accent); }
+#cal.six .cell { height: 38px; padding-top: 6px; }
+
+/* Gold: SJC's selling price large, its buying price beside it, the ring below. */
+.gold { background: var(--moss); border-color: var(--moss-edge); padding: 32px 36px; }
+.gold .unit, .gold .lbl, .gold .bl, .gold .rb, .gold .note { color: var(--moss-muted); }
+.gold .lbl { margin-top: auto; font-size: 20px; }
+.gold .big { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 6px; }
+.gold .v { font-size: 108px; font-weight: 200; line-height: .86; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.gold .buy { text-align: right; padding-bottom: 4px; }
+.gold .bl { display: block; font-size: 16px; }
+.gold .bv { display: block; font-size: 32px; font-weight: 300; color: var(--moss-soft); font-variant-numeric: tabular-nums; }
+.gold .rule { height: 1px; background: var(--moss-rule); margin: 26px 0 20px; }
+.gold .ring { display: flex; justify-content: space-between; align-items: baseline; }
+.gold .ring .k { font-size: 22px; color: var(--moss-soft); }
+.gold .rv { font-variant-numeric: tabular-nums; }
+.gold .rs { font-size: 42px; font-weight: 300; letter-spacing: -.02em; }
+.gold .rb { font-size: 22px; }
+.gold .note { font-size: 16px; margin-top: 14px; }
+
+/* Fuel: a round badge for each grade. */
+.fuel { background: var(--lake); border-color: var(--lake-edge); padding: 32px 36px; }
+.fuel .unit { color: var(--lake-muted); }
+.fuel .rows { margin-top: auto; display: flex; flex-direction: column; gap: 12px; }
+.fuel .r { display: flex; align-items: center; gap: 18px; height: 72px; }
+.fuel .badge { width: 64px; height: 64px; border-radius: 32px; background: var(--lake-badge); flex: none; display: flex;
+  align-items: center; justify-content: center; font-size: 24px; font-weight: 600; }
+.fuel .k { font-size: 20px; color: var(--lake-soft); flex: 1; }
+.fuel .v { font-size: 48px; font-weight: 200; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+
+.dock { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; height: 160px; }
+.tile { background: var(--card); border: 1px solid var(--edge); color: var(--text); border-radius: 28px; box-sizing: border-box;
+  display: flex; align-items: center; gap: 24px; padding: 0 32px; outline: 3px solid transparent; outline-offset: 6px;
+  transition: background-color .12s ease-out, color .12s ease-out; }
+.tile .ico { width: 88px; height: 88px; flex-shrink: 0; border-radius: 44px; background: var(--well); display: flex;
+  align-items: center; justify-content: center; }
+.tile .ico svg { stroke: var(--text); }
+.tile .ico .f { fill: var(--text); }
+.tile span:last-child { font-size: 42px; font-weight: 500; letter-spacing: -.01em; white-space: nowrap; }
+/* The focused tile turns pale leaf-green with a green ring, as YouTube is in the design. */
+.tile.focus { background: var(--focus-bg); border-color: var(--focus-bg); color: var(--forest); outline-color: var(--accent); }
+.tile.focus .ico { background: var(--forest); }
+.tile.focus .ico svg { stroke: var(--focus-bg); }
+.tile.focus .ico .f { fill: var(--focus-bg); }

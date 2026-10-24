@@ -1,0 +1,103 @@
+/* Tranh Đông Hồ: điệp-paper orange with brown ink outlines and a folk painting down the right edge (design "Q. Tranh
+   Đông Hồ"). Everything else sits in a 1260 px column on the left. */
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-ExtraLight.woff2') format('woff2'); font-weight: 200; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Light.woff2') format('woff2'); font-weight: 300; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Regular.woff2') format('woff2'); font-weight: 400; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Medium.woff2') format('woff2'); font-weight: 500; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-SemiBold.woff2') format('woff2'); font-weight: 600; }
+
+/*
+ * The design lays see-through paper fills over the flat page; over a flat page those are just these solid colours, which
+ * a TV draws for free. Its painting fades in through a CSS mask; tranh.webp has that fade baked into it.
+ */
+:root {
+  --page: #EFD1AB; --ink: #2A1F17; --muted: #6B4E33; --red: #B03A52; --accent: #2F6266; --on-accent: #F8EEDC;
+  --paper: #F6E2C7; --well: #E8D4BB; --gold: #EAC68E; --fuel: #D3C2A3; --badge: #3F7478; --focus-well: #537B7B;
+  --line: 1.5px solid var(--ink);
+}
+html, body { margin: 0; height: 100%; overflow: hidden; background: #000; }
+#stage { width: 1920px; height: 1080px; transform-origin: 0 0; position: absolute; left: 0; top: 0; box-sizing: border-box;
+  padding: 64px 88px; background: var(--page); color: var(--ink); font-family: 'BVP', sans-serif; font-weight: 400;
+  overflow: hidden; }
+.art { position: absolute; right: 0; top: 0; }
+
+/* The two round buttons float over the painting, top right. */
+.btns { position: absolute; right: 88px; top: 64px; height: 64px; display: flex; align-items: center; gap: 14px; }
+.btn { width: 56px; height: 56px; border-radius: 28px; border: var(--line); background: rgba(255, 247, 234, .6);
+  box-sizing: border-box; display: flex; align-items: center; justify-content: center; outline: 3px solid transparent;
+  outline-offset: 5px; }
+.btn.focus { outline-color: var(--accent); background: rgba(255, 247, 234, .9); }
+.btn .pal { stroke: var(--ink); }
+.btn .pal circle { fill: var(--ink); stroke: none; }
+.btn .wifi { stroke: var(--accent); }
+.btn .wifi .w0 { fill: var(--accent); }
+.btn.off .wifi { stroke: var(--muted); }
+.btn.off .wifi .w0 { fill: var(--muted); }
+.btn.off .w1, .btn.off .w2, .btn.off .w3 { opacity: .3; }
+
+.col { position: relative; width: 1260px; height: 952px; display: flex; flex-direction: column; gap: 32px; }
+.bar { display: flex; align-items: center; height: 64px; }
+.hello { font-size: 26px; color: var(--muted); }
+
+.mast { display: flex; align-items: flex-end; justify-content: space-between; height: 220px; }
+.clock { font-weight: 200; font-size: 236px; line-height: .82; letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
+/* Hours and minutes only, as the design shows. */
+.clock .sec { display: none; }
+.day { text-align: right; padding-bottom: 8px; }
+.day .wk { font-size: 56px; font-weight: 500; line-height: 1; letter-spacing: -.02em; }
+.day .dt { font-size: 28px; font-weight: 300; color: var(--muted); margin-top: 14px; }
+.day .lu { font-size: 28px; font-weight: 300; color: var(--red); margin-top: 4px; }
+
+.blocks { display: grid; grid-template-columns: 600px minmax(0, 1fr) minmax(0, 1fr); gap: 24px; height: 400px; }
+.block { border: var(--line); border-radius: 4px; box-sizing: border-box; display: flex; flex-direction: column; }
+.block h2 { margin: 0; font-size: 28px; font-weight: 500; }
+.unit { font-size: 16px; color: var(--muted); margin-top: 6px; }
+
+.cal { background: var(--paper); padding: 28px 30px; gap: 10px; }
+.cal h2 { font-size: 30px; }
+.cal .top { display: flex; justify-content: space-between; align-items: baseline; }
+.cal .top span { font-size: 18px; color: var(--muted); }
+.cal .wd { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); font-size: 16px; font-weight: 500; color: var(--muted); letter-spacing: .06em; }
+.cal .wd span:last-child { color: var(--red); }
+.cal .grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.cell { height: 44px; display: flex; align-items: baseline; gap: 5px; padding: 8px 0 0 10px; box-sizing: border-box; border-radius: 4px; }
+.cell b { font-size: 22px; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--ink); }
+.cell i { font-style: normal; font-size: 12px; color: var(--muted); }
+.cell.sun b, .cell.special i { color: var(--red); }
+.cell.special i { font-weight: 600; }
+.cell.today { background: var(--accent); }
+.cell.today b, .cell.today i { color: var(--on-accent); }
+#cal.six .cell { height: 38px; padding-top: 6px; }
+
+.gold { background: var(--gold); padding: 30px 28px; font-variant-numeric: tabular-nums; }
+.gold .lbl { margin-top: auto; font-size: 18px; color: var(--muted); }
+.gold .v { font-size: 88px; font-weight: 200; line-height: .9; letter-spacing: -.04em; margin-top: 4px; }
+.gold .buy { font-size: 18px; color: var(--muted); margin-top: 8px; }
+.gold .rule { height: 1.5px; background: var(--ink); margin: 18px 0 14px; }
+.gold .lbl2 { font-size: 18px; color: var(--muted); }
+.gold .rs { font-size: 40px; font-weight: 300; letter-spacing: -.02em; }
+.gold .rb { font-size: 20px; color: var(--muted); }
+
+.fuel { background: var(--fuel); padding: 30px 28px; }
+.fuel .rows { margin-top: auto; display: flex; flex-direction: column; gap: 16px; }
+.fuel .r { display: flex; align-items: center; gap: 16px; }
+.fuel .badge { width: 54px; height: 54px; border-radius: 27px; background: var(--badge); color: var(--on-accent); flex: none;
+  display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 600; }
+.fuel .kv { display: flex; flex-direction: column; }
+.fuel .k { font-size: 16px; color: var(--muted); }
+.fuel .v { font-size: 40px; font-weight: 300; line-height: 1.05; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+
+.dock { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; height: 160px; }
+.tile { background: var(--paper); border: var(--line); color: var(--ink); border-radius: 4px; box-sizing: border-box;
+  display: flex; align-items: center; gap: 18px; padding: 0 26px; outline: 3px solid transparent; outline-offset: 6px;
+  transition: background-color .12s ease-out, color .12s ease-out; }
+.tile .ico { width: 68px; height: 68px; flex: none; border-radius: 34px; background: var(--well); display: flex;
+  align-items: center; justify-content: center; }
+.tile .ico svg { stroke: var(--ink); }
+.tile .ico .f { fill: var(--ink); }
+.tile span:last-child { font-size: 32px; font-weight: 500; letter-spacing: -.01em; white-space: nowrap; }
+/* The focused tile turns teal with a teal ring, as YouTube is in the design. */
+.tile.focus { background: var(--accent); border-color: var(--accent); color: var(--on-accent); outline-color: var(--accent); }
+.tile.focus .ico { background: var(--focus-well); }
+.tile.focus .ico svg { stroke: var(--on-accent); }
+.tile.focus .ico .f { fill: var(--on-accent); }

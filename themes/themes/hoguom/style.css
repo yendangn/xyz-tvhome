@@ -1,0 +1,68 @@
+/* Hồ Gươm thu: Tháp Rùa under red autumn leaves, the calendar bottom left and the time bottom right (design "T. Hồ
+   Gươm thu"); no prices. */
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-ExtraLight.woff2') format('woff2'); font-weight: 200; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Regular.woff2') format('woff2'); font-weight: 400; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Medium.woff2') format('woff2'); font-weight: 500; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-SemiBold.woff2') format('woff2'); font-weight: 600; }
+
+/*
+ * The design frosts its cards with backdrop-filter. They sit on the photo's lower part, which the design's cream veil
+ * (baked into hoguom.webp) already covers at 80 %, so see-through white alone looks the same and costs a TV nothing.
+ */
+:root {
+  --page: #E8E6E1; --ink: #2B2A28; --muted: #55524C; --warm: #A6461C; --accent: #B5531F;
+  --glass: rgba(250, 248, 244, .72); --glass-edge: rgba(255, 255, 255, .85);
+}
+html, body { margin: 0; height: 100%; overflow: hidden; background: #000; }
+#stage { width: 1920px; height: 1080px; transform-origin: 0 0; position: absolute; left: 0; top: 0; box-sizing: border-box;
+  background: var(--page); color: var(--ink); font-family: 'BVP', sans-serif; font-weight: 400; overflow: hidden; }
+.photo { position: absolute; left: 0; top: 0; }
+.glass { background: var(--glass); border: 1px solid var(--glass-edge); box-sizing: border-box; }
+
+.btns { position: absolute; right: 80px; top: 56px; display: flex; gap: 14px; }
+.btn { width: 56px; height: 56px; border-radius: 28px; background: var(--glass); border: 1px solid var(--glass-edge); box-sizing: border-box;
+  display: flex; align-items: center; justify-content: center; outline: 3px solid transparent; outline-offset: 5px; }
+.btn.focus { outline-color: var(--accent); background: #FFFFFF; }
+.btn .pal { stroke: var(--ink); }
+.btn .pal circle { fill: var(--ink); stroke: none; }
+.btn .wifi { stroke: var(--accent); }
+.btn .wifi .w0 { fill: var(--accent); }
+.btn.off .wifi { stroke: var(--muted); }
+.btn.off .wifi .w0 { fill: var(--muted); }
+.btn.off .w1, .btn.off .w2, .btn.off .w3 { opacity: .3; }
+
+/* Along the bottom: the calendar and the icons on the left, the greeting, time and date on the right. */
+.foot { position: absolute; left: 88px; right: 80px; bottom: 64px; display: flex; justify-content: space-between; align-items: flex-end; }
+.left { width: 680px; display: flex; flex-direction: column; gap: 26px; }
+
+.cal { border-radius: 28px; padding: 22px 26px; display: flex; flex-direction: column; gap: 8px; }
+.cal h2 { margin: 0; font-size: 26px; font-weight: 500; }
+.cal .wd { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); font-size: 15px; font-weight: 500; color: var(--muted); letter-spacing: .06em; }
+.cal .wd span:last-child { color: var(--warm); }
+.cal .grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 2px 4px; }
+.cell { height: 38px; display: flex; align-items: baseline; gap: 5px; padding: 7px 0 0 10px; box-sizing: border-box; border-radius: 19px; }
+.cell b { font-size: 19px; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--ink); }
+.cell i { font-style: normal; font-size: 11px; color: var(--muted); }
+.cell.sun b, .cell.special i { color: var(--warm); }
+.cell.special i { font-weight: 600; }
+.cell.today { background: var(--accent); }
+.cell.today b, .cell.today i { color: #FFFFFF; }
+/* A six-row month grows upwards, as the calendar stands on the icons. */
+#cal.six .cell { height: 34px; padding-top: 5px; }
+
+/* Four round icons; the focused one turns autumn orange with an orange ring. */
+.dock { display: flex; justify-content: space-between; align-items: center; }
+.tile { width: 92px; height: 92px; border-radius: 46px; display: flex; align-items: center; justify-content: center;
+  outline: 3px solid transparent; outline-offset: 5px; transition: background-color .12s ease-out; }
+.tile svg { stroke: var(--ink); }
+.tile .f { fill: var(--ink); }
+.tile.focus { background: var(--accent); border-color: var(--accent); outline-color: var(--accent); }
+.tile.focus svg { stroke: #FFFFFF; }
+.tile.focus .f { fill: #FFFFFF; }
+
+.right { text-align: right; }
+.hello { font-size: 24px; color: var(--muted); }
+.clock { font-weight: 200; font-size: 220px; line-height: .85; letter-spacing: -.05em; font-variant-numeric: tabular-nums; margin-top: 18px; }
+/* Hours and minutes only, as the design shows. */
+.clock .sec { display: none; }
+.date { font-size: 38px; font-weight: 500; letter-spacing: -.01em; margin-top: 18px; }

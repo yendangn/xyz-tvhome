@@ -1,0 +1,68 @@
+/* Rooftop Sài Gòn: a rooftop café facing Landmark 81, and one frosted panel down the right (design "S. Rooftop Sài
+   Gòn"); no prices. */
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-ExtraLight.woff2') format('woff2'); font-weight: 200; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Regular.woff2') format('woff2'); font-weight: 400; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Medium.woff2') format('woff2'); font-weight: 500; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-SemiBold.woff2') format('woff2'); font-weight: 600; }
+
+/*
+ * The design frosts the panel with backdrop-filter: blur(24px). rooftop.webp carries that blur already, in the panel's
+ * rounded box (and the design's 10 % cream veil over the whole photo), so the panel is only see-through white.
+ */
+:root {
+  --page: #E9E4DD; --ink: #2E2620; --muted: #5A4F45; --faint: #8C7A6A; --warm: #B8452F; --accent: #8A5530; --on-accent: #F7F3EC;
+  --soft: rgba(255, 255, 255, .75); --soft-edge: rgba(46, 38, 32, .12);
+}
+html, body { margin: 0; height: 100%; overflow: hidden; background: #000; }
+#stage { width: 1920px; height: 1080px; transform-origin: 0 0; position: absolute; left: 0; top: 0; box-sizing: border-box;
+  background: var(--page); color: var(--ink); font-family: 'BVP', sans-serif; font-weight: 400; overflow: hidden; }
+.photo { position: absolute; left: 0; top: 0; }
+
+.panel { position: absolute; right: 48px; top: 48px; bottom: 48px; width: 600px; box-sizing: border-box; padding: 44px;
+  background: rgba(255, 255, 255, .6); border: 1px solid rgba(255, 255, 255, .8); border-radius: 36px;
+  display: flex; flex-direction: column; }
+
+.bar { display: flex; justify-content: space-between; align-items: center; height: 56px; }
+.hello { font-size: 22px; color: var(--muted); }
+.btns { display: flex; gap: 12px; }
+.btn { width: 56px; height: 56px; border-radius: 28px; background: var(--soft); border: 1px solid var(--soft-edge); box-sizing: border-box;
+  display: flex; align-items: center; justify-content: center; outline: 3px solid transparent; outline-offset: 5px; }
+.btn.focus { outline-color: var(--accent); background: #FFFFFF; }
+.btn .pal { stroke: var(--ink); }
+.btn .pal circle { fill: var(--ink); stroke: none; }
+.btn .wifi { stroke: var(--accent); }
+.btn .wifi .w0 { fill: var(--accent); }
+.btn.off .wifi { stroke: var(--faint); }
+.btn.off .wifi .w0 { fill: var(--faint); }
+.btn.off .w1, .btn.off .w2, .btn.off .w3 { opacity: .3; }
+
+.clock { font-weight: 200; font-size: 176px; line-height: .82; letter-spacing: -.05em; font-variant-numeric: tabular-nums; margin-top: 40px; }
+/* Hours and minutes only, as the design shows. */
+.clock .sec { display: none; }
+.date { font-size: 36px; font-weight: 500; letter-spacing: -.01em; margin-top: 22px; }
+.rule { height: 1px; background: rgba(46, 38, 32, .15); margin: 28px 0 22px; }
+
+.cal { display: flex; flex-direction: column; gap: 8px; }
+.cal h2 { margin: 0; font-size: 26px; font-weight: 500; }
+.cal .wd { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); font-size: 16px; font-weight: 500; color: var(--muted); letter-spacing: .06em; }
+.cal .wd span:last-child { color: var(--warm); }
+.cal .grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.cell { height: 40px; display: flex; align-items: baseline; gap: 5px; padding: 8px 0 0 10px; box-sizing: border-box; border-radius: 22px; }
+.cell b { font-size: 20px; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--ink); }
+.cell i { font-style: normal; font-size: 12px; color: var(--faint); }
+.cell.sun b, .cell.special i { color: var(--warm); }
+.cell.special i { font-weight: 600; }
+.cell.today { background: var(--accent); }
+.cell.today b, .cell.today i { color: var(--on-accent); }
+#cal.six .cell { height: 36px; padding-top: 6px; }
+
+/* At the foot of the panel: four round icons. The focused one turns coffee brown with a brown ring. */
+.dock { margin-top: auto; display: flex; align-items: center; justify-content: space-between; }
+.tile { width: 96px; height: 96px; border-radius: 48px; background: var(--soft); border: 1px solid var(--soft-edge); box-sizing: border-box;
+  display: flex; align-items: center; justify-content: center; outline: 3px solid transparent; outline-offset: 5px;
+  transition: background-color .12s ease-out; }
+.tile svg { stroke: var(--ink); }
+.tile .f { fill: var(--ink); }
+.tile.focus { background: var(--accent); border-color: var(--accent); outline-color: var(--accent); }
+.tile.focus svg { stroke: #FFFFFF; }
+.tile.focus .f { fill: #FFFFFF; }

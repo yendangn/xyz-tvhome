@@ -1,0 +1,66 @@
+/* Trời xanh: a sea almond branch with fish wind chimes against a blue sky on the left, the time, calendar and icons
+   on the right (design "U. Trời xanh"); no prices. */
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-ExtraLight.woff2') format('woff2'); font-weight: 200; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Regular.woff2') format('woff2'); font-weight: 400; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Medium.woff2') format('woff2'); font-weight: 500; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-SemiBold.woff2') format('woff2'); font-weight: 600; }
+
+/*
+ * troixanh.webp holds the design's sky gradient and the branch photo with its fade to the right. The design frosts the
+ * round buttons with backdrop-filter; behind them is only the smooth sky, so see-through white alone looks the same.
+ */
+:root {
+  --sky: #73A8BA; --ink: #0E2A3B; --muted: #2C4A5C; --warm: #8E2E1E; --accent: #2F6B3A;
+  --glass: rgba(255, 255, 255, .4); --glass-edge: rgba(255, 255, 255, .6);
+}
+html, body { margin: 0; height: 100%; overflow: hidden; background: #000; }
+#stage { width: 1920px; height: 1080px; transform-origin: 0 0; position: absolute; left: 0; top: 0; box-sizing: border-box;
+  background: var(--sky); color: var(--ink); font-family: 'BVP', sans-serif; font-weight: 400; overflow: hidden; }
+.photo { position: absolute; left: 0; top: 0; }
+.glass { background: var(--glass); border: 1px solid var(--glass-edge); box-sizing: border-box; }
+
+.btns { position: absolute; right: 80px; top: 56px; display: flex; gap: 14px; }
+.btn { width: 56px; height: 56px; border-radius: 28px; background: var(--glass); border: 1px solid var(--glass-edge); box-sizing: border-box;
+  display: flex; align-items: center; justify-content: center; outline: 3px solid transparent; outline-offset: 5px; }
+.btn.focus { outline-color: var(--accent); background: rgba(255, 255, 255, .8); }
+.btn .pal { stroke: var(--ink); }
+.btn .pal circle { fill: var(--ink); stroke: none; }
+.btn .wifi { stroke: var(--accent); }
+.btn .wifi .w0 { fill: var(--accent); }
+.btn.off .wifi { stroke: var(--muted); }
+.btn.off .wifi .w0 { fill: var(--muted); }
+.btn.off .w1, .btn.off .w2, .btn.off .w3 { opacity: .3; }
+
+/* Everything else in one column on the right, over the open sky. */
+.side { position: absolute; left: 1140px; right: 80px; top: 150px; bottom: 64px; display: flex; flex-direction: column; }
+.hello { font-size: 24px; color: var(--muted); }
+.clock { font-weight: 200; font-size: 210px; line-height: .85; letter-spacing: -.05em; font-variant-numeric: tabular-nums; margin-top: 16px; }
+/* Hours and minutes only, as the design shows. */
+.clock .sec { display: none; }
+.date { font-size: 36px; font-weight: 500; letter-spacing: -.01em; margin-top: 20px; }
+
+.cal { margin-top: 44px; display: flex; flex-direction: column; gap: 8px; }
+.cal .top { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 10px; border-bottom: 1px solid rgba(14, 42, 59, .25); }
+.cal h2 { margin: 0; font-size: 26px; font-weight: 500; }
+.cal .top span { font-size: 17px; color: var(--muted); }
+.cal .wd { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); font-size: 15px; font-weight: 500; color: var(--muted); letter-spacing: .06em; margin-top: 6px; }
+.cal .wd span:last-child { color: var(--warm); }
+.cal .grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 2px 4px; }
+.cell { height: 38px; display: flex; align-items: baseline; gap: 5px; padding: 7px 0 0 10px; box-sizing: border-box; border-radius: 19px; }
+.cell b { font-size: 19px; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--ink); }
+.cell i { font-style: normal; font-size: 11px; color: var(--muted); }
+.cell.sun b, .cell.special i { color: var(--warm); }
+.cell.special i { font-weight: 600; }
+.cell.today { background: var(--accent); }
+.cell.today b, .cell.today i { color: #FFFFFF; }
+#cal.six .cell { height: 34px; padding-top: 5px; }
+
+/* At the foot of the column: four round icons. The focused one turns leaf green with a green ring. */
+.dock { margin-top: auto; display: flex; justify-content: space-between; align-items: center; }
+.tile { width: 92px; height: 92px; border-radius: 46px; display: flex; align-items: center; justify-content: center;
+  outline: 3px solid transparent; outline-offset: 5px; transition: background-color .12s ease-out; }
+.tile svg { stroke: var(--ink); }
+.tile .f { fill: var(--ink); }
+.tile.focus { background: var(--accent); border-color: var(--accent); outline-color: var(--accent); }
+.tile.focus svg { stroke: #FFFFFF; }
+.tile.focus .f { fill: #FFFFFF; }

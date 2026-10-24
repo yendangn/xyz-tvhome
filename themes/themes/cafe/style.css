@@ -1,0 +1,71 @@
+/* Cà phê chill: a soft-focus café table with pink roses behind dark frosted cards (design "R. Cà phê chill"); no
+   prices. */
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-ExtraLight.woff2') format('woff2'); font-weight: 200; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Light.woff2') format('woff2'); font-weight: 300; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Regular.woff2') format('woff2'); font-weight: 400; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Medium.woff2') format('woff2'); font-weight: 500; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-SemiBold.woff2') format('woff2'); font-weight: 600; }
+
+/*
+ * The design frosts its cards with backdrop-filter. The photo is already out of focus, so the same see-through brown
+ * reads as frosted glass without it, and a weak TV draws it for nothing. Its 30 % dark veil is baked into cafe.webp.
+ */
+:root {
+  --page: #1E1410; --ink: #F5EDE6; --muted: #D8C8BC; --faint: #BBA89A; --warm: #F2A3A3; --accent: #C2557A;
+  --glass: rgba(28, 18, 14, .45); --glass-edge: rgba(255, 255, 255, .14);
+}
+html, body { margin: 0; height: 100%; overflow: hidden; background: #000; }
+#stage { width: 1920px; height: 1080px; transform-origin: 0 0; position: absolute; left: 0; top: 0; box-sizing: border-box;
+  padding: 64px 88px; background: var(--page); color: var(--ink); font-family: 'BVP', sans-serif; font-weight: 400;
+  display: flex; flex-direction: column; gap: 32px; overflow: hidden; }
+#stage > * { position: relative; }
+#stage > .photo { position: absolute; left: 0; top: 0; }
+.glass { background: var(--glass); border: 1px solid var(--glass-edge); box-sizing: border-box; }
+
+.bar { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+.hello { font-size: 26px; color: var(--muted); }
+.btns { display: flex; gap: 14px; }
+.btn { width: 56px; height: 56px; border-radius: 28px; background: var(--glass); border: 1px solid var(--glass-edge); box-sizing: border-box;
+  display: flex; align-items: center; justify-content: center; outline: 3px solid transparent; outline-offset: 5px; }
+.btn.focus { outline-color: var(--accent); background: rgba(28, 18, 14, .75); }
+.btn .pal { stroke: var(--ink); }
+.btn .pal circle { fill: var(--ink); stroke: none; }
+.btn .wifi { stroke: var(--accent); }
+.btn .wifi .w0 { fill: var(--accent); }
+.btn.off .wifi { stroke: var(--faint); }
+.btn.off .wifi .w0 { fill: var(--faint); }
+.btn.off .w1, .btn.off .w2, .btn.off .w3 { opacity: .3; }
+
+.mast { display: flex; align-items: flex-end; justify-content: space-between; height: 220px; }
+.clock { font-weight: 200; font-size: 240px; line-height: .82; letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
+/* Hours and minutes only, as the design shows. */
+.clock .sec { display: none; }
+.day { text-align: right; padding-bottom: 8px; }
+.day .wk { font-size: 60px; font-weight: 500; line-height: 1; letter-spacing: -.02em; }
+.day .dt { font-size: 30px; font-weight: 300; color: var(--muted); margin-top: 16px; }
+
+.cal { width: 760px; height: 400px; border-radius: 28px; padding: 28px 32px; display: flex; flex-direction: column; gap: 10px; }
+.cal h2 { margin: 0; font-size: 30px; font-weight: 500; }
+.cal .top { display: flex; justify-content: space-between; align-items: baseline; }
+.cal .top span { font-size: 18px; color: var(--muted); }
+.cal .wd { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); font-size: 16px; font-weight: 500; color: var(--muted); letter-spacing: .06em; }
+.cal .wd span:last-child { color: var(--warm); }
+.cal .grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.cell { height: 44px; display: flex; align-items: baseline; gap: 5px; padding: 8px 0 0 10px; box-sizing: border-box; border-radius: 22px; }
+.cell b { font-size: 22px; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--ink); }
+.cell i { font-style: normal; font-size: 12px; color: var(--faint); }
+.cell.sun b, .cell.special i { color: var(--warm); }
+.cell.special i { font-weight: 600; }
+.cell.today { background: var(--accent); }
+.cell.today b, .cell.today i { color: #FFFFFF; }
+#cal.six .cell { height: 38px; padding-top: 6px; }
+
+/* Under the calendar, across its width: four round icons. The focused one turns rose pink with a pink ring. */
+.dock { width: 760px; height: 160px; display: flex; align-items: center; justify-content: space-between; }
+.tile { width: 128px; height: 128px; border-radius: 64px; display: flex; align-items: center; justify-content: center;
+  outline: 3px solid transparent; outline-offset: 6px; transition: background-color .12s ease-out; }
+.tile svg { stroke: var(--ink); }
+.tile .f { fill: var(--ink); }
+.tile.focus { background: var(--accent); border-color: var(--accent); outline-color: var(--accent); }
+.tile.focus svg { stroke: #FFFFFF; }
+.tile.focus .f { fill: #FFFFFF; }

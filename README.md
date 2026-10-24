@@ -45,9 +45,16 @@
 | ![Hiện đại tối giản](docs/screenshots/modern.webp) **Hiện đại tối giản** (`modern`) | ![Hiện đại sáng](docs/screenshots/modern-light.webp) **Hiện đại sáng** (`modern-light`) |
 | ![Liquid Glass](docs/screenshots/liquid.webp) **Liquid Glass** (`liquid`) | ![Neon Ring](docs/screenshots/neon-ring.webp) **Neon Ring** (`neon-ring`) |
 | ![Noel](docs/screenshots/noel.webp) **Noel** (`noel`) | ![Noel lò sưởi](docs/screenshots/noel-fireplace.webp) **Noel lò sưởi** (`noel-fireplace`) |
-| ![Tết](docs/screenshots/tet.webp) **Tết** (`tet`) | |
+| ![Tết](docs/screenshots/tet.webp) **Tết** (`tet`) | ![Đồng hồ kim](docs/screenshots/analog.webp) **Đồng hồ kim** (`analog`) |
+| ![Bắc Âu](docs/screenshots/nordic.webp) **Bắc Âu** (`nordic`) | ![Cây lá](docs/screenshots/leaf.webp) **Cây lá** (`leaf`) |
+| ![Indochine](docs/screenshots/indochine.webp) **Indochine** (`indochine`) | ![Gốm Bát Tràng](docs/screenshots/battrang.webp) **Gốm Bát Tràng** (`battrang`) |
+| ![Tranh Đông Hồ](docs/screenshots/dongho.webp) **Tranh Đông Hồ** (`dongho`) | ![Cà phê chill](docs/screenshots/cafe.webp) **Cà phê chill** (`cafe`) |
+| ![Rooftop Sài Gòn](docs/screenshots/rooftop.webp) **Rooftop Sài Gòn** (`rooftop`) | ![Hồ Gươm thu](docs/screenshots/hoguom.webp) **Hồ Gươm thu** (`hoguom`) |
+| ![Trời xanh](docs/screenshots/troixanh.webp) **Trời xanh** (`troixanh`) | ![Bảng chọn theme](docs/screenshots/picker.webp) **Bảng chọn theme** |
 
-Ảnh chụp trên TV VinSmart 4K (1920×1080) ngày 23/10/2026.
+Ảnh chụp trên TV VinSmart 4K (1920×1080) ngày 23 và 24/10/2026. Riêng ảnh Đồng hồ kim là ảnh xem trước, chụp trên máy tính.
+
+Đổi theme bằng nút bảng màu ở góc trên: bảng chọn theme hiện ở nửa dưới màn hình, mỗi theme một ảnh xem trước. Theme đang dùng có nhãn "Đang dùng".
 
 ## TV Home là gì?
 
@@ -60,7 +67,7 @@ TV Home là màn hình chính làm riêng cho Android TV, dùng thay màn hình 
 - Các ô lớn để mở YouTube, Play Store, Cài đặt và danh sách ứng dụng.
 - Nút đổi theme. Riêng theme Noel còn có nhạc.
 
-Hiện có sẵn 11 theme (ảnh ở trên), muốn thêm theme mới cũng được. App làm và chạy thử trên TV VinSmart 4K
+Hiện có sẵn 12 theme (ảnh ở trên), muốn thêm theme mới cũng được. App làm và chạy thử trên TV VinSmart 4K
 (`VINATV_4K`, mã `TR2001`): Android 9, RAM 2 GB, màn hình 1920×1080, chip ARMv7.
 
 ## Chạy như thế nào?
@@ -243,7 +250,8 @@ Lệnh thứ hai chép theme "modern" ra thư mục mới, mở lên là chạy 
   | Nhóm | Id |
   |---|---|
   | Giờ, ngày | `clock` (có thêm span `.sec` cho giây; chỉ muốn HH:MM thì thêm `.clock .sec { display: none; }`), `hello`, `weekday`, `dayNum`, `monthNum`, `monthName`, `dateText`, `dateLong` |
-  | Âm lịch | `lunarLong`, `lunarShort`, `lunarSlash`, `ccYear`, `ccYearName`, `ccMonth`, `ccDay` |
+  | Âm lịch | `lunarLong`, `lunarShort`, `lunarSlash`, `lunarLine` ("15 tháng 9 âm lịch"), `ccYear`, `ccYearName`, `ccMonth`, `ccDay` |
+  | Lời chào theo buổi | `dayPart`: "buổi sáng" (5–11 giờ), "buổi trưa" (11–13), "buổi chiều" (13–18), "buổi tối". Dùng như `Chào <span id="dayPart"></span>, <span data-owner>…</span>` |
   | Lịch tháng | `cal` (thêm class `.six` khi tháng có 6 hàng), `calTitle`, `calSpan`, `calGrid` (mỗi ô `.cell` có `<b>` ngày dương, `<i>` ngày âm; class `.sun`, `.special`, `.today`) |
   | Giá | `sjc`, `ring`, `sjcBuy`, `ringBuy`, `e10`, `e5`, `do`, `priceTime` |
 
@@ -456,10 +464,6 @@ adb -s <ip-tv>:5555 shell "logcat -d | grep -E 'TvHome|FATAL|AndroidRuntime'"
     src/public/         LivePrices: nguồn giá, mặc định để trống, có bản mẫu trong comment
   scripts/              build-web.mjs (chép và nén các theme được chọn), new-theme.mjs, preview.mjs
   ```
-
-- **Kiểm tra PR.** Mỗi pull request vào `main` chạy `check_pr` (GitHub Actions, `.github/workflows/check_pr.yml`): cài
-  thư viện của `scripts/` rồi build bản release. Build không thành công thì không merge được. APK của lần chạy nằm
-  trong mục Artifacts của lần chạy đó.
 
 - <a id="vi-prices"></a>**Nguồn giá.** Giá vàng, giá xăng dầu đi qua interface `Prices` (`app/src/main/java/com/xyz/tvhome/prices/`). Nguồn
   nào cũng trả về một `PriceBoard`, và chỉ `PriceBoard.toJson()` mới tạo JSON cho `core.js` đọc.
