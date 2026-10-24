@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Bìa tạp chí</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <div class="bar">
+    <span class="hello">Xin chào <span data-owner>Yên Đặng</span></span>
+    <div class="btns">
+      <div class="btn" data-nav="top" data-action="themes" aria-label="Giao diện">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2.2" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.2 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.7 1.8-1.7h2.1A4.3 4.3 0 0 0 21 11c0-4.4-4-8-9-8z"/><circle cx="7.5" cy="11.5" r="1.3" fill="#F2542D" stroke="none"/><circle cx="10.5" cy="7.5" r="1.3" fill="#2549D9" stroke="none"/><circle cx="15.5" cy="7.8" r="1.3" fill="#1FA971" stroke="none"/></svg>
+      </div>
+      <div class="btn" data-nav="top" data-action="wifi" aria-label="Wi-Fi">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2.4" stroke-linecap="round"><path class="w3" d="M2 8.5a15 15 0 0 1 20 0"/><path class="w2" d="M5.5 12.5a10 10 0 0 1 13 0"/><path class="w1" d="M9 16.3a5 5 0 0 1 6 0"/><circle class="w0" cx="12" cy="20" r="1.2" fill="#141414"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="mast">
+    <h1 class="serif" id="weekday"></h1>
+    <div class="clock serif" id="clock"></div>
+  </div>
+
+  <div class="blocks">
+    <section class="block cal" id="cal">
+      <div class="now">
+        <div>
+          <div class="big serif" id="dayNum"></div>
+          <div class="my" id="monthYear"></div>
+        </div>
+        <div class="seal"><div class="v serif" id="lunarShort"></div><div class="l">âm lịch</div></div>
+      </div>
+      <div class="month">
+        <div class="wd"><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span></div>
+        <div class="grid" id="calGrid"></div>
+      </div>
+    </section>
+
+    <section class="block gold">
+      <h2>Giá vàng</h2>
+      <div class="sub">triệu đồng mỗi lượng, giá bán ra</div>
+      <div class="rows">
+        <div class="r"><span>SJC</span><span class="serif" id="sjc">–</span></div>
+        <div class="r"><span>Nhẫn 999.9</span><span class="serif" id="ring">–</span></div>
+        <div class="note">Mua vào <span id="sjcBuy">–</span> và <span id="ringBuy">–</span>, <span id="priceTime"></span></div>
+      </div>
+    </section>
+
+    <section class="block fuel">
+      <h2>Xăng dầu</h2>
+      <div class="sub">đồng mỗi lít, Petrolimex vùng 1</div>
+      <div class="rows">
+        <div class="r"><span>E10 RON95</span><span class="serif" id="e10">–</span></div>
+        <div class="r"><span>E5 RON92</span><span class="serif" id="e5">–</span></div>
+        <div class="r"><span>Dầu DO</span><span class="serif" id="do">–</span></div>
+      </div>
+    </section>
+  </div>
+
+  <nav class="dock">
+    <div class="tile yt" data-nav="dock" data-pkg="com.google.android.youtube.tv">
+      <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="#FFFFFF"/></svg>
+      <span>YouTube</span>
+    </div>
+    <div class="tile store" data-nav="dock" data-pkg="com.android.vending">
+      <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.8" stroke-linejoin="round"><path d="M4 8h16l-1.5 13h-13z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/><path d="M10.5 12l4 2.5-4 2.5z" fill="#141414"/></svg>
+      <span>Cửa hàng</span>
+    </div>
+    <div class="tile set" data-nav="dock" data-action="settings">
+      <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/><circle cx="12" cy="12" r="6.5"/></svg>
+      <span>Cài đặt</span>
+    </div>
+    <div class="tile apps" data-nav="dock" data-action="apps">
+      <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg>
+      <span>Ứng dụng</span>
+    </div>
+  </nav>
+</div>
+<script src="../../core.js"></script>
+</body>
+</html>

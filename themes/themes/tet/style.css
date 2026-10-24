@@ -1,0 +1,132 @@
+/* Tết: a wine-red spring night with peach and apricot blossom (design "J. Tết"), on the modern layout. */
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Light.woff2') format('woff2'); font-weight: 300; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Regular.woff2') format('woff2'); font-weight: 400; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Medium.woff2') format('woff2'); font-weight: 500; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-SemiBold.woff2') format('woff2'); font-weight: 600; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Bold.woff2') format('woff2'); font-weight: 700; }
+@font-face { font-family: 'JBM'; src: url('../../fonts/JetBrainsMono-Medium.woff2') format('woff2'); font-weight: 500; }
+
+/*
+ * Colours each page sets on :root:
+ *   --ground (page), --surface / --edge / --lift (cards: background, border colour, box-shadow), --rule (dividers),
+ *   --text, --muted, --label, --faint, --warm (Sundays, lunar 1st and 15th), --accent, --on-accent,
+ *   --raised / --raised-edge (icon boxes, a focused button), --icon (tile icons),
+ *   --focus-bg / --focus-ink / --focus-edge / --focus-ico / --focus-icon / --focus-lift (the focused tile),
+ *   --gold-bg / --gold-ink, --fuel-bg / --fuel-ink (card icons).
+ */
+:root { --raised-edge: transparent; --lift: none; --focus-lift: none; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: #000; }
+#stage { width: 1920px; height: 1080px; transform-origin: 0 0; position: absolute; left: 0; top: 0; box-sizing: border-box;
+  padding: 64px 80px; background: var(--ground); color: var(--text); font-family: 'BVP', sans-serif; font-weight: 400;
+  display: flex; flex-direction: column; gap: 32px; overflow: hidden; }
+
+.bar { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+.hello { display: flex; align-items: center; gap: 16px; font-size: 26px; font-weight: 500; color: var(--muted); }
+.hello .dot { width: 14px; height: 14px; border-radius: 7px; background: var(--accent); }
+.btns { display: flex; gap: 16px; }
+.btn { width: 56px; height: 56px; border-radius: 28px; border: 1px solid var(--edge); background: var(--surface); box-shadow: var(--lift);
+  box-sizing: border-box; display: flex; align-items: center; justify-content: center; outline: 4px solid transparent; outline-offset: 5px; }
+.btn.focus { outline-color: var(--accent); background: var(--raised); }
+.btn .pal { stroke: var(--text); }
+.btn .pal .a { fill: var(--accent); }
+.btn .pal .t { fill: var(--text); }
+.btn .wifi { stroke: var(--accent); }
+.btn .wifi .w0 { fill: var(--accent); }
+.btn.off .wifi { stroke: var(--faint); }
+.btn.off .wifi .w0 { fill: var(--faint); }
+.btn.off .w1, .btn.off .w2, .btn.off .w3 { opacity: .3; }
+
+.mast { display: flex; align-items: flex-end; justify-content: space-between; height: 220px; }
+.clock { font-weight: 300; font-size: 236px; line-height: .82; letter-spacing: -.06em; font-variant-numeric: tabular-nums; }
+/* Hours and minutes only, as the designs show. */
+.clock .sec { display: none; }
+.day { text-align: right; padding-bottom: 8px; }
+.day .wk { font-size: 64px; font-weight: 600; line-height: 1; letter-spacing: -.02em; }
+.day .dt { font-size: 32px; color: var(--muted); margin-top: 14px; }
+
+.blocks { display: grid; grid-template-columns: 760px minmax(0, 1fr); gap: 24px; height: 400px; }
+.block { background: var(--surface); border: 1px solid var(--edge); box-shadow: var(--lift); border-radius: 32px; padding: 32px 36px;
+  box-sizing: border-box; display: flex; flex-direction: column; }
+.block h2 { margin: 0; font-size: 30px; font-weight: 600; }
+.block .sub { font-size: 18px; color: var(--muted); margin-top: 10px; }
+.head { display: flex; align-items: center; gap: 14px; }
+.ico { width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; }
+.gold .ico { background: var(--gold-bg); }
+.gold .ico svg { stroke: var(--gold-ink); }
+.fuel .ico { background: var(--fuel-bg); }
+.fuel .ico svg { stroke: var(--fuel-ink); }
+
+.cal { padding: 28px 32px; gap: 10px; }
+.cal .top { display: flex; justify-content: space-between; align-items: baseline; }
+.cal .top span { font-size: 18px; font-weight: 500; color: var(--muted); }
+.cal .wd { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); font-size: 16px; font-weight: 600; color: var(--muted); letter-spacing: .06em; }
+.cal .wd span:last-child { color: var(--warm); }
+.cal .grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.cell { height: 44px; display: flex; align-items: baseline; gap: 5px; padding: 8px 0 0 10px; box-sizing: border-box; border-radius: 12px; }
+.cell b { font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--text); }
+.cell i { font-style: normal; font-size: 12px; font-weight: 500; color: var(--faint); }
+.cell.sun b, .cell.special i { color: var(--warm); }
+.cell.special i { font-weight: 700; }
+.cell.today { background: var(--accent); }
+.cell.today b, .cell.today i { color: var(--on-accent); }
+#cal.six .cell { height: 38px; padding-top: 6px; }
+
+.rows { margin-top: auto; display: flex; flex-direction: column; }
+.r { display: flex; justify-content: space-between; align-items: baseline; }
+.rule { height: 1px; background: var(--rule); }
+.r .k { font-weight: 500; color: var(--label); }
+.r .v { font-weight: 300; font-variant-numeric: tabular-nums; }
+.gold .rows { gap: 22px; }
+.gold .k { font-size: 24px; }
+.gold .v { font-size: 76px; line-height: .9; letter-spacing: -.03em; }
+.gold .note { font-family: 'JBM', monospace; font-size: 16px; color: var(--muted); text-transform: uppercase; }
+.fuel .rows { gap: 14px; }
+.fuel .k { font-size: 22px; }
+.fuel .v { font-size: 52px; line-height: 1; letter-spacing: -.02em; }
+
+.dock { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; height: 160px; }
+.tile { background: var(--surface); border: 1px solid var(--edge); box-shadow: var(--lift); color: var(--text); border-radius: 32px;
+  box-sizing: border-box; display: flex; align-items: center; gap: 24px; padding: 0 32px; outline: 3px solid transparent;
+  outline-offset: 6px; transition: background-color .12s ease-out, color .12s ease-out; }
+.tile .ico { width: 88px; height: 88px; flex-shrink: 0; border-radius: 24px; background: var(--raised); border: 1px solid var(--raised-edge); box-sizing: border-box; }
+.tile .ico svg { stroke: var(--icon); }
+.tile .ico .f { fill: var(--icon); }
+.tile span:last-child { font-size: 44px; font-weight: 700; letter-spacing: -.02em; white-space: nowrap; }
+/* The focused tile turns over, as YouTube does in the designs. */
+.tile.focus { background: var(--focus-bg); color: var(--focus-ink); border-color: var(--focus-edge); box-shadow: var(--focus-lift); outline-color: var(--accent); }
+.tile.focus .ico { background: var(--focus-ico); border-color: transparent; }
+.tile.focus .ico svg { stroke: var(--focus-icon); }
+.tile.focus .ico .f { fill: var(--focus-icon); }
+
+/* The design blurs what is behind each card (backdrop-filter); over a plain gradient that changes nothing and costs a
+   weak TV a lot, so the cards are drawn without it. */
+:root { --ground: linear-gradient(160deg, #5C1820 0%, #431118 55%, #2C0B10 100%);
+  --surface: rgba(255,240,225,.07); --edge: rgba(255,230,210,.16); --lift: inset 0 1px 0 rgba(255,230,210,.12); --rule: rgba(255,230,210,.16);
+  --text: #F3E6D8; --muted: #CDB8A6; --label: #E9D8C6; --faint: #B9A391; --warm: #E08A90; --accent: #E0B04A; --on-accent: #5A0A0F;
+  --raised: rgba(255,255,255,.18); --raised-edge: rgba(255,255,255,.35); --icon: #F4F5F7;
+  --focus-bg: #7A1019; --focus-ink: #F3E6D8; --focus-edge: #9A2A33; --focus-ico: rgba(243,230,216,.12); --focus-icon: #F3E6D8;
+  --focus-lift: inset 0 1px 0 rgba(255,255,255,.4), 0 24px 60px rgba(40,0,0,.45); --focus-ring: rgba(244,192,78,.8);
+  --gold-bg: transparent; --gold-ink: var(--accent); --fuel-bg: transparent; --fuel-ink: var(--accent); }
+
+/* Branches sit behind the content, which is lifted above them. */
+#stage > * { position: relative; }
+#stage > .deco { position: absolute; top: 0; width: 780px; height: 360px; }
+#stage > .deco.peach { left: 0; }
+#stage > .deco.apricot { right: 0; }
+
+.hello .dot { width: 12px; height: 12px; border-radius: 6px; }
+.btn.focus, .tile.focus { outline-color: var(--focus-ring); }
+.btn .wifi { stroke: var(--text); }
+.btn .wifi .w0, .btn .pal .t { fill: var(--text); }
+
+/* The countdown to Tết (tet.js). The zodiac papercut shows only in its own year: mui.webp for a Mùi year. */
+.tet { padding: 32px 36px; overflow: hidden; }
+.tet .head { display: flex; align-items: center; gap: 18px; }
+.tet h2 { font-size: 34px; letter-spacing: -.01em; }
+.tet .sub { font-size: 20px; margin-top: 4px; }
+.tet .count { margin-top: auto; display: flex; align-items: baseline; gap: 24px; }
+.tet .n { font-size: 200px; font-weight: 300; line-height: .8; letter-spacing: -.06em; color: var(--accent); font-variant-numeric: tabular-nums; }
+.tet .l { font-size: 40px; font-weight: 500; }
+.tet .head, .tet .count { position: relative; }
+.tet .zodiac { position: absolute; right: 24px; top: 16px; height: 368px; width: 245px; object-fit: contain; opacity: .22; display: none; }
+#tet[data-chi="Mùi"] .zodiac.mui { display: block; }

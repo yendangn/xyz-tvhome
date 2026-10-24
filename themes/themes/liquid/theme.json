@@ -1,0 +1,30 @@
+{
+  "name": "Liquid Glass",
+  "order": 80,
+  "panel": {
+    "scrim": "rgba(11,16,48,.55)",
+    "panel": "rgba(38,42,92,.92)",
+    "ink": "#FFFFFF",
+    "border": 1,
+    "borderColor": "rgba(255,255,255,.38)",
+    "radius": 32,
+    "elevation": 24,
+    "titleFont": "fonts/panel/bevietnampro_semibold.ttf",
+    "titleSize": 44,
+    "cardRadius": 20,
+    "imgRadius": 14,
+    "imgBorder": 1,
+    "imgBorderColor": "rgba(255,255,255,.35)",
+    "nameFont": "fonts/panel/bevietnampro_semibold.ttf",
+    "nameSize": 30,
+    "tagFont": "fonts/panel/bevietnampro_bold.ttf",
+    "tag": "#0B0C0F",
+    "tagBg": "#7CF29A",
+    "tagRadius": 999,
+    "tagPadV": 4,
+    "tagPadH": 12,
+    "sel": "#7CF29A",
+    "selWidth": 4,
+    "selBg": "rgba(255,255,255,.16)"
+  }
+}

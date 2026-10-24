@@ -1,0 +1,89 @@
+import javax.inject.Inject
+
+plugins {
+    id 'com.android.application' version '8.5.2'
+    id 'org.jetbrains.kotlin.android' version '2.0.21'
+}
+// The APK keeps its usual name, app-release.apk, though the project is named tv-home.
+base { archivesName = 'app' }
+android {
+    // The gold and fuel prices (prices/Prices.kt) come from a LivePrices, in one of two folders: app/src/public/, empty
+    // until filled in, or app/src/local/, when there, a LivePrices of your own. -Pprices=public or local picks the
+    // folder (only that one goes into the build); the default is local when it is there, else public.
+    def hasLocal = file('src/local/java').isDirectory()
+    def prices = providers.gradleProperty('prices').getOrElse(hasLocal ? 'local' : 'public')
+    if (!(prices in ['local', 'public'])) throw new GradleException("-Pprices=$prices: use local or public")
+    if (prices == 'local' && !hasLocal) throw new GradleException("-Pprices=local: there is no app/src/local/")
+    sourceSets { main { java.srcDirs += "src/$prices/java" } }
+
+    namespace 'com.xyz.tvhome'
+    compileSdk 34
+    buildFeatures { aidl false; buildConfig true }
+    defaultConfig {
+        applicationId 'com.xyz.tvhome'; minSdk 26; targetSdk 34; versionCode 1; versionName '1.0'
+        // The themes' music (music/Music.kt): -Pmusic=player (the default) plays it; noop never does.
+        def music = providers.gradleProperty('music').getOrElse('player')
+        if (!(music in ['player', 'noop'])) throw new GradleException("-Pmusic=$music: use player or noop")
+        buildConfigField 'String', 'MUSIC', "\"$music\""
+        // TVs run ARM; x86 and x86_64 are only for the emulator. The app has no native code today, so this changes
+        // nothing yet, but it keeps emulator .so files out of the APK if a library with native code is ever added.
+        ndk { abiFilters 'armeabi-v7a', 'arm64-v8a' }
+    }
+    buildTypes { release {
+        minifyEnabled true
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        signingConfig signingConfigs.debug
+    } }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+}
+kotlin { compilerOptions { jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17 } }
+
+/**
+ * The app's assets are built from themes/ by scripts/build-web.mjs: the themes in -Pthemes=retro,modern (all when
+ * unset) and only the fonts and images they use, greeting -Powner="Tên" (themes/site.json's owner when unset). Needs
+ * Node and `npm --prefix scripts install` run in the repository's root; set -Pnode=/path/to/node when `node` is not on Gradle's PATH (Android
+ * Studio started from the Dock).
+ */
+abstract class BuildWebAssets extends DefaultTask {
+    @InputDirectory @PathSensitive(PathSensitivity.RELATIVE) abstract DirectoryProperty getWeb()
+    @InputFile @PathSensitive(PathSensitivity.RELATIVE) abstract RegularFileProperty getScript()
+    /** scripts/site.mjs, which build-web.mjs imports. */
+    @InputFile @PathSensitive(PathSensitivity.RELATIVE) abstract RegularFileProperty getSiteScript()
+    @InputFile @PathSensitive(PathSensitivity.RELATIVE) abstract RegularFileProperty getLockfile()
+    /** Comma-separated theme ids; empty for every theme. */
+    @Input abstract Property<String> getThemes()
+    /** The name the pages greet; empty for themes/site.json's. */
+    @Input abstract Property<String> getOwner()
+    @Input abstract Property<Boolean> getMinify()
+    @Input abstract Property<String> getNode()
+    @OutputDirectory abstract DirectoryProperty getOutput()
+    @Inject abstract ExecOperations getExecOps()
+
+    @TaskAction
+    void run() {
+        def cmd = [getNode().get(), getScript().get().asFile.absolutePath, '--out', getOutput().get().asFile.absolutePath]
+        if (getThemes().get()) cmd += ['--themes', getThemes().get()]
+        if (getOwner().get()) cmd += ['--owner', getOwner().get()]
+        if (getMinify().get()) cmd << '--minify'
+        execOps.exec { it.commandLine(cmd) }
+    }
+}
+
+androidComponents {
+    onVariants(selector().all()) { variant ->
+        def task = tasks.register("build${variant.name.capitalize()}Web", BuildWebAssets) {
+            // The repository's root, one level up: themes/ and scripts/ (with its package-lock.json) live there.
+            def repo = rootProject.layout.projectDirectory.dir('..')
+            it.web.set(repo.dir('themes'))
+            it.script.set(repo.file('scripts/build-web.mjs'))
+            it.siteScript.set(repo.file('scripts/site.mjs'))
+            it.lockfile.set(repo.file('scripts/package-lock.json'))
+            it.themes.set(providers.gradleProperty('themes').orElse(''))
+            it.owner.set(providers.gradleProperty('owner').orElse(''))
+            // Release builds ship minified pages; debug builds keep them as written, so they stay easy to inspect.
+            it.minify.set(variant.buildType == 'release')
+            it.node.set(providers.gradleProperty('node').orElse('node'))
+        }
+        variant.sources.assets.addGeneratedSourceDirectory(task, { it.output })
+    }
+}

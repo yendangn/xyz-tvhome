@@ -1,0 +1,92 @@
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Medium.woff2') format('woff2'); font-weight: 500; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-SemiBold.woff2') format('woff2'); font-weight: 600; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Bold.woff2') format('woff2'); font-weight: 700; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-ExtraBold.woff2') format('woff2'); font-weight: 800; }
+
+/* Near-black cards around one neon card that holds the day. */
+:root { --ground: #0A0A0A; --card: #161616; --raised: #262626; --line: #262626; --text: #F5F5F5; --muted: #9A9A9A;
+  --hello: #A3A3A3; --label: #C7C7C7; --faint: #8A8A8A; --accent: #D4FF3A; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: var(--ground); }
+#stage { width: 1920px; height: 1080px; transform-origin: 0 0; position: absolute; left: 0; top: 0; box-sizing: border-box;
+  padding: 64px 80px; background: var(--ground); color: var(--text); font-family: 'BVP', sans-serif; font-weight: 500;
+  font-variant-numeric: tabular-nums; display: flex; flex-direction: column; gap: 24px; overflow: hidden; }
+
+.bar { display: flex; justify-content: space-between; align-items: center; height: 56px; }
+.hello { font-size: 26px; font-weight: 600; letter-spacing: -.01em; color: var(--hello); }
+.hello span { color: var(--text); }
+.btns { display: flex; gap: 12px; }
+.btn { width: 56px; height: 56px; border-radius: 28px; border: 1px solid #2A2A2A; background: var(--card); box-sizing: border-box;
+  display: flex; align-items: center; justify-content: center; outline: 4px solid transparent; outline-offset: 5px; }
+.btn.focus { outline-color: var(--accent); background: var(--raised); }
+.btn .wifi { stroke: var(--text); }
+.btn .wifi .w0 { fill: var(--text); }
+.btn.off .wifi { stroke: #6B6B6B; }
+.btn.off .wifi .w0 { fill: #6B6B6B; }
+.btn.off .w1, .btn.off .w2, .btn.off .w3 { opacity: .3; }
+
+.main { flex-grow: 1; min-height: 0; display: grid; grid-template-columns: 700px minmax(0, 1fr); gap: 24px; }
+.side { display: flex; flex-direction: column; gap: 24px; }
+h2 { margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -.02em; }
+.unit, .k { font-size: 16px; font-weight: 700; letter-spacing: .16em; color: var(--muted); text-transform: uppercase; }
+
+/* The day: the ring fills as the day goes by (ring.js). */
+.hero { background: var(--accent); color: var(--ground); border-radius: 56px; padding: 36px 44px; box-sizing: border-box;
+  display: flex; flex-direction: column; align-items: center; }
+.hero .head { align-self: stretch; display: flex; justify-content: space-between; align-items: center; }
+.kicker { font-size: 18px; font-weight: 700; letter-spacing: .18em; }
+.badge { height: 44px; padding: 0 20px; border-radius: 22px; background: var(--ground); color: var(--accent); display: flex;
+  align-items: center; font-size: 18px; font-weight: 700; }
+/* Smaller than the design's 480 px: the card is shorter now that the tiles run along the bottom. */
+.dial { width: 400px; height: 400px; position: relative; margin-top: 18px; }
+.dial svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+/* 114px (the design has 148 in a 480 px ring): with even-width digits, a larger "20:51" touches the ring. */
+.clock { font-size: 114px; font-weight: 800; line-height: .9; letter-spacing: -.06em; }
+/* Hours and minutes only, as the design shows. */
+.clock .sec { display: none; }
+.pct { font-size: 18px; font-weight: 600; margin-top: 14px; }
+.foot { align-self: stretch; margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; }
+.big { font-size: 140px; font-weight: 800; line-height: .78; letter-spacing: -.06em; }
+.when { text-align: right; padding-bottom: 4px; }
+/* core.js writes "tháng 10, 2026". */
+.my { font-size: 34px; font-weight: 800; letter-spacing: -.02em; text-transform: capitalize; }
+.lunar { font-size: 20px; font-weight: 600; margin-top: 8px; }
+
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 56px; padding: 30px 44px; box-sizing: border-box;
+  display: flex; flex-direction: column; }
+.top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+
+.cal { height: 380px; gap: 8px; }
+.cal .wd { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); font-size: 16px; font-weight: 700; letter-spacing: .16em;
+  color: var(--muted); margin-top: 4px; }
+.cal .grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); row-gap: 4px; }
+.cell { height: 42px; width: 112px; display: flex; align-items: baseline; gap: 6px; padding: 7px 0 0 14px; box-sizing: border-box;
+  border-radius: 21px; }
+.cell b { font-size: 22px; font-weight: 800; letter-spacing: -.02em; color: var(--text); }
+.cell i { font-style: normal; font-size: 12px; font-weight: 700; color: var(--faint); }
+/* Weekends are grey; Saturday is the 6th column (blank lead-in cells are .cell too). */
+.grid .cell:nth-child(7n+6) b, .grid .cell.sun b { color: var(--muted); }
+.cell.special i { color: var(--accent); }
+.grid .cell.today { background: var(--accent); }
+.grid .cell.today b, .grid .cell.today i { color: var(--ground); }
+#cal.six .cell { height: 36px; padding-top: 5px; }
+#cal.six .grid { row-gap: 2px; }
+
+.prices { flex-grow: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
+.rows { margin-top: auto; }
+.gold .rows { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.gold .v { font-size: 76px; font-weight: 800; line-height: 1; letter-spacing: -.05em; margin-top: 6px; }
+.fuel .rows { display: flex; flex-direction: column; gap: 6px; }
+.fuel .r { display: flex; justify-content: space-between; align-items: baseline; }
+.fuel .k { font-size: 20px; font-weight: 600; letter-spacing: 0; color: var(--label); text-transform: none; }
+.fuel .v { font-size: 38px; font-weight: 800; letter-spacing: -.03em; }
+
+.dock { flex-shrink: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; height: 170px; }
+.tile { background: var(--card); border: 1px solid var(--line); color: var(--text); border-radius: 48px; padding: 24px 32px;
+  box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; outline: 4px solid transparent;
+  outline-offset: 6px; transition: background-color .12s ease-out, color .12s ease-out; }
+.tile .ico { width: 60px; height: 60px; border-radius: 30px; background: var(--raised); display: flex; align-items: center; justify-content: center; }
+.tile .name { font-size: 38px; font-weight: 800; letter-spacing: -.03em; white-space: nowrap; }
+/* The focused tile turns light, as YouTube does in the design. */
+.tile.focus { background: var(--text); color: var(--ground); border-color: var(--text); outline-color: var(--accent); }
+.tile.focus .ico { background: var(--ground); }

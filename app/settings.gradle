@@ -1,0 +1,16 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+// One project: this folder is both the Gradle root and the app (themes/ and scripts/ sit beside it, one level up).
+rootProject.name = "tv-home"

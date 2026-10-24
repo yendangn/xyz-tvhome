@@ -1,0 +1,26 @@
+{
+  "name": "Pastel tươi vui",
+  "order": 40,
+  "panel": {
+    "scrim": "rgba(43,35,64,.35)",
+    "panel": "#FFFFFF",
+    "ink": "#2B2340",
+    "radius": 48,
+    "elevation": 24,
+    "titleFont": "fonts/panel/nunito_black.ttf",
+    "titleSize": 52,
+    "cardRadius": 32,
+    "imgRadius": 22,
+    "nameFont": "fonts/panel/nunito_black.ttf",
+    "nameSize": 28,
+    "tagFont": "fonts/panel/bevietnampro_bold.ttf",
+    "tag": "#2B2340",
+    "tagBg": "#FFD3BA",
+    "tagRadius": 999,
+    "tagPadV": 5,
+    "tagPadH": 14,
+    "sel": "#2B2340",
+    "selWidth": 5,
+    "selBg": "#F6F4FF"
+  }
+}

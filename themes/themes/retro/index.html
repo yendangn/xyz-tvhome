@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Retro Việt Nam</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+ <div class="upper">
+
+  <section class="bloc">
+    <div class="bind"><span></span><span></span></div>
+    <div class="page">
+      <div class="month oswald" id="monthYearUpper"></div>
+      <div class="day anton" id="dayNum"></div>
+      <div class="weekday oswald" id="weekdayUpper"></div>
+      <div class="foot">
+        <div>
+          <div class="lbl">Âm lịch</div>
+          <div class="lunar anton" id="lunarSlash"></div>
+        </div>
+        <div class="canchi">
+          <div id="ccYear"></div>
+          <div id="ccMonth"></div>
+          <div id="ccDay"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="right">
+    <div class="top">
+      <div class="hello oswald">Xin chào <span data-owner>Yên Đặng</span></div>
+      <div class="btns">
+      <div class="wifi" data-nav="top" data-action="themes" aria-label="Giao diện">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#2A1E14" stroke-width="2.2" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.2 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.7 1.8-1.7h2.1A4.3 4.3 0 0 0 21 11c0-4.4-4-8-9-8z"/><circle cx="7.5" cy="11.5" r="1.3" fill="#C8102E" stroke="none"/><circle cx="10.5" cy="7.5" r="1.3" fill="#2F4F3A" stroke="none"/><circle cx="15.5" cy="7.8" r="1.3" fill="#2A1E14" stroke="none"/></svg>
+      </div>
+      <div class="wifi" data-nav="top" data-action="wifi" aria-label="Wi-Fi">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#2A1E14" stroke-width="2.6" stroke-linecap="round"><path class="w3" d="M2 8.5a15 15 0 0 1 20 0"/><path class="w2" d="M5.5 12.5a10 10 0 0 1 13 0"/><path class="w1" d="M9 16.3a5 5 0 0 1 6 0"/><circle class="w0" cx="12" cy="20" r="1.2" fill="#2A1E14"/></svg>
+      </div>
+      </div>
+    </div>
+
+    <!-- The clock sits in the middle of the space between the greeting and the calendar. -->
+    <div class="time"><div class="clock anton" id="clock"></div></div>
+
+    <div class="mid">
+      <section class="cal" id="cal">
+        <div class="head"><h2 class="oswald" id="calTitle"></h2><span class="span" id="calSpan"></span></div>
+        <div class="wd oswald"><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span></div>
+        <div class="grid" id="calGrid"></div>
+      </section>
+
+      <div class="prices">
+        <section class="gold">
+          <div class="head">
+            <svg width="48" height="48" viewBox="0 0 24 24"><path d="M12 2.5l2.6 6.3 6.9.5-5.3 4.4 1.7 6.7L12 16.8l-5.9 3.6 1.7-6.7L2.5 9.3l6.9-.5z" fill="#F2C230"/></svg>
+            <h2 class="oswald">Giá vàng</h2>
+          </div>
+          <div class="row">
+            <div class="p"><div>Vàng miếng SJC</div><div class="anton" id="sjc">–</div></div>
+            <div class="p"><div>Nhẫn 999.9</div><div class="anton" id="ring">–</div></div>
+          </div>
+        </section>
+        <section class="fuel">
+          <div class="coupon"><div class="t oswald">Xăng E10</div><div class="v anton" id="e10">–</div><div class="u">đồng mỗi lít</div></div>
+          <div class="coupon"><div class="t oswald">Xăng E5</div><div class="v anton" id="e5">–</div><div class="u">đồng mỗi lít</div></div>
+          <div class="coupon"><div class="t oswald">Dầu DO</div><div class="v anton" id="do">–</div><div class="u">đồng mỗi lít</div></div>
+        </section>
+      </div>
+    </div>
+  </div>
+ </div>
+
+  <!-- The stamps run the stage's full width, under both the tear-off calendar and the rest. -->
+  <nav class="dock">
+      <div class="stamp yt" data-nav="dock" data-pkg="com.google.android.youtube.tv">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#FBF6EA" stroke-width="2" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9l5 3-5 3z" fill="#FBF6EA"/></svg>
+        <span>YouTube</span>
+      </div>
+      <div class="stamp store" data-nav="dock" data-pkg="com.android.vending">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#FBF6EA" stroke-width="2" stroke-linejoin="round"><path d="M4 8h16l-1.5 13h-13z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/><path d="M10.5 12l4 2.5-4 2.5z" fill="#FBF6EA"/></svg>
+        <span>Cửa hàng</span>
+      </div>
+      <div class="stamp set" data-nav="dock" data-action="settings">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#2A1E14" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/><circle cx="12" cy="12" r="6.5"/></svg>
+        <span>Cài đặt</span>
+      </div>
+      <div class="stamp apps" data-nav="dock" data-action="apps">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#FBF6EA" stroke-width="2" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg>
+        <span>Ứng dụng</span>
+      </div>
+  </nav>
+</div>
+
+<script src="../../core.js"></script>
+</body>
+</html>

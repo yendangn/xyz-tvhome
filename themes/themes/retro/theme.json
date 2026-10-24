@@ -1,0 +1,44 @@
+{
+  "name": "Retro Việt Nam",
+  "order": 10,
+  "panel": {
+    "scrim": "rgba(42,30,20,.62)",
+    "panel": "#FBF6EA",
+    "ink": "#2A1E14",
+    "border": 4,
+    "borderColor": "#2A1E14",
+    "radius": 0,
+    "shadow": {
+      "dx": 14,
+      "dy": 16,
+      "color": "rgba(42,30,20,.35)"
+    },
+    "titleFont": "fonts/panel/oswald_bold.ttf",
+    "titleSize": 50,
+    "titleColor": "#C8102E",
+    "titleRule": 3,
+    "titlePad": 18,
+    "cardRadius": 0,
+    "imgRadius": 0,
+    "imgBorder": 3,
+    "imgBorderColor": "#2A1E14",
+    "nameFont": "fonts/panel/oswald_bold.ttf",
+    "nameSize": 30,
+    "tagFont": "fonts/panel/bevietnampro_bold.ttf",
+    "tag": "#C8102E",
+    "tagBorder": 2.5,
+    "tagPadV": 3,
+    "tagPadH": 10,
+    "tagTilt": -4,
+    "sel": "#2A1E14",
+    "selWidth": 4,
+    "selBg": "#F2C230",
+    "selLiftX": -4,
+    "selLiftY": -6,
+    "selShadow": {
+      "dx": 8,
+      "dy": 10,
+      "color": "rgba(42,30,20,.35)"
+    }
+  }
+}

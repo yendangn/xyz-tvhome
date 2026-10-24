@@ -1,0 +1,132 @@
+/* Noel lò sưởi: a warm red Christmas by the fireplace (design "K. Noel lò sưởi"), on Noel's layout. */
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Light.woff2') format('woff2'); font-weight: 300; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Regular.woff2') format('woff2'); font-weight: 400; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Medium.woff2') format('woff2'); font-weight: 500; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-SemiBold.woff2') format('woff2'); font-weight: 600; }
+@font-face { font-family: 'BVP'; src: url('../../fonts/BeVietnamPro-Bold.woff2') format('woff2'); font-weight: 700; }
+
+/*
+ * The design's glass cards blur what is behind them (backdrop-filter); that costs a weak TV a lot for little, so
+ * they are drawn without it.
+ */
+:root {
+  --text: #F3E6D8; --muted: #CDB8A6; --faint: #B9A391; --warm: #E08A90; --gold: #E0B04A; --on-gold: #5A0A0F;
+  --glass: rgba(255,240,225,.07); --glass-edge: rgba(255,230,210,.16); --glass-lift: inset 0 1px 0 rgba(255,230,210,.12);
+  --ring: rgba(244,192,78,.8);
+}
+html, body { margin: 0; height: 100%; overflow: hidden; background: #000; }
+#stage { width: 1920px; height: 1080px; transform-origin: 0 0; position: absolute; left: 0; top: 0; box-sizing: border-box;
+  padding: 64px 80px; color: var(--text); font-family: 'BVP', sans-serif; font-weight: 400;
+  display: flex; flex-direction: column; gap: 32px; overflow: hidden;
+  background: linear-gradient(160deg, #721822 0%, #511119 55%, #330A10 100%); }
+
+/*
+ * The snow: the design's three sizes of flake, each a tiled layer one tile taller than the screen, starting a tile
+ * above it, falling a tile and starting over (which looks the same) at the design's speeds, 17 to 33 px a second.
+ *
+ * The one endless CSS animation in the themes, kept by choice: only Home's own frames pay for it, and Home pauses
+ * while another app is in front. Measured on the VinSmart TV with this theme on screen (% of one of its 4 cores):
+ * about 80 (app 55, renderer 25) as here; 49 moving the layers 10 times a second from JS, 17 at 4 times (both visibly
+ * jerky); Noel, whose snow lies still, about 5. Each layer moves on the GPU (will-change), never repainted.
+ */
+#stage > * { position: relative; }
+#stage > .snow { position: absolute; left: 0; width: 1920px; will-change: transform; }
+.snow.s1 { top: -120px; height: 1200px; background: radial-gradient(rgba(255,255,255,.9) 1.6px, rgba(255,255,255,0) 2.2px) 0 0 / 120px 120px; }
+.snow.s2 { top: -180px; height: 1260px; background: radial-gradient(rgba(255,255,255,.6) 2.6px, rgba(255,255,255,0) 3.2px) 40px 30px / 180px 180px; }
+.snow.s3 { top: -245px; height: 1325px; background: radial-gradient(rgba(255,255,255,.35) 3.6px, rgba(255,255,255,0) 4.4px) 90px 10px / 245px 245px; }
+.snow.s1 { animation: fall1 7s linear infinite; }
+.snow.s2 { animation: fall2 7s linear infinite; }
+.snow.s3 { animation: fall3 7.5s linear infinite; }
+@keyframes fall1 { to { transform: translateY(120px); } }
+@keyframes fall2 { to { transform: translateY(180px); } }
+@keyframes fall3 { to { transform: translateY(245px); } }
+
+.bar { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+.hello { display: flex; align-items: center; gap: 16px; font-size: 26px; font-weight: 500; color: var(--muted); }
+.hello .dot { width: 12px; height: 12px; border-radius: 6px; background: var(--gold); }
+.btns { display: flex; gap: 16px; }
+.btn { width: 56px; height: 56px; border-radius: 28px; border: 1px solid var(--glass-edge); background: var(--glass); box-shadow: var(--glass-lift);
+  box-sizing: border-box; display: flex; align-items: center; justify-content: center; outline: 3px solid transparent; outline-offset: 5px; }
+.btn.focus { outline-color: var(--ring); background: rgba(255,240,225,.16); }
+.btn svg { stroke: var(--text); }
+.btn .pal .t, .btn .wifi .w0 { fill: var(--text); }
+.btn.off .wifi { stroke: var(--faint); }
+.btn.off .wifi .w0 { fill: var(--faint); }
+.btn.off .w1, .btn.off .w2, .btn.off .w3 { opacity: .3; }
+
+.mast { display: flex; align-items: flex-end; justify-content: space-between; height: 220px; }
+.clock { font-weight: 300; font-size: 236px; line-height: .82; letter-spacing: -.06em; font-variant-numeric: tabular-nums; }
+/* Hours and minutes only, as the design shows. */
+.clock .sec { display: none; }
+.day { text-align: right; padding-bottom: 8px; }
+.day .wk { font-size: 64px; font-weight: 600; line-height: 1; letter-spacing: -.02em; }
+.day .dt { font-size: 32px; color: var(--muted); margin-top: 14px; }
+
+.blocks { display: grid; grid-template-columns: 760px minmax(0, 1fr); gap: 24px; height: 400px; }
+.block { background: var(--glass); border: 1px solid var(--glass-edge); box-shadow: var(--glass-lift); border-radius: 32px;
+  box-sizing: border-box; display: flex; flex-direction: column; position: relative; }
+.block h2 { margin: 0; font-size: 30px; font-weight: 600; }
+
+.cal { padding: 28px 32px; gap: 10px; }
+.cal .top { display: flex; justify-content: space-between; align-items: baseline; }
+.cal .top span { font-size: 18px; font-weight: 500; color: var(--muted); }
+.cal .wd { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); font-size: 16px; font-weight: 600; color: var(--muted); letter-spacing: .06em; }
+.cal .wd span:last-child { color: var(--warm); }
+.cal .grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.cell { height: 44px; display: flex; align-items: baseline; gap: 5px; padding: 8px 0 0 10px; box-sizing: border-box; border-radius: 12px; }
+.cell b { font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--text); }
+.cell i { font-style: normal; font-size: 12px; font-weight: 500; color: var(--faint); }
+.cell.sun b, .cell.special i { color: var(--warm); }
+.cell.special i { font-weight: 700; }
+.cell.today { background: var(--gold); }
+.cell.today b, .cell.today i { color: var(--on-gold); }
+#cal.six .cell { height: 38px; padding-top: 6px; }
+
+/* The countdown to Christmas (fireplace.js), beside the fireplace. */
+.xmas { padding: 32px 36px; overflow: hidden; }
+.xmas .head, .xmas .count { position: relative; }
+.xmas h2 { font-size: 34px; letter-spacing: -.01em; }
+.xmas .sub { font-size: 20px; color: var(--muted); margin-top: 4px; }
+.xmas .count { margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
+.xmas .n { font-size: 176px; font-weight: 600; line-height: .8; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.xmas .l { font-size: 32px; font-weight: 500; color: var(--muted); }
+
+/* The fireplace: 330 px square, the design's 300-unit drawing scaled by 1.1, layered as index.html says. */
+.fire { position: absolute; right: 28px; bottom: 0; width: 330px; height: 330px; }
+.fire > * { position: absolute; left: 0; top: 0; }
+/* The design's glow: a circle round the fire, brightest low in the firebox. */
+.fire .glow { top: 71.5px; width: 330px; height: 330px; border-radius: 50%;
+  background: radial-gradient(circle 165px at 50% 72%, rgba(255,154,60,.55), rgba(255,154,60,0)); opacity: .75; }
+/*
+ * The flicker: fireplace.js gives each flame a state every quarter second (the design's keyframes, a0–a3 and b0–b2)
+ * and the glow its brightness (g0–g2). Each is its own GPU layer (will-change), so a change is one frame of new
+ * transforms and opacity, with no repaint. The design's flames are endless CSS animations of SVG shapes, which would
+ * repaint the fireplace in every one of the snow's frames. Each flame grows from the middle of its base.
+ */
+.fire .glow, .fire .fl { will-change: transform, opacity; }
+.fire .f1 { transform-origin: 165px 307px; }
+.fire .f2 { transform-origin: 165px 301px; }
+.fire .f3 { transform-origin: 165px 295px; }
+.fire .a1 { transform: scale(.96, 1.06) skewX(-3deg); }
+.fire .a2 { transform: scale(1.03, .95) skewX(2deg); }
+.fire .a3 { transform: scale(.98, 1.04) skewX(-1deg); }
+.fire .b1 { transform: scale(1.05, .93) skewX(3deg); }
+.fire .b2 { transform: scale(.95, 1.08) skewX(-2deg); }
+.fire .glow.g1 { opacity: 1; }
+.fire .glow.g2 { opacity: .82; }
+
+.dock { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; height: 160px; }
+.tile { background: var(--glass); border: 1px solid var(--glass-edge); box-shadow: var(--glass-lift); color: var(--text); border-radius: 32px;
+  box-sizing: border-box; display: flex; align-items: center; gap: 24px; padding: 0 32px; outline: 3px solid transparent;
+  outline-offset: 6px; transition: background-color .12s ease-out; }
+.tile .ico { width: 88px; height: 88px; flex-shrink: 0; border-radius: 24px; background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.35); box-sizing: border-box; display: flex; align-items: center; justify-content: center; }
+.tile .ico svg { stroke: #F4F5F7; }
+.tile .ico .f { fill: #F4F5F7; }
+.tile span:last-child { font-size: 44px; font-weight: 700; letter-spacing: -.02em; white-space: nowrap; }
+/* The focused tile: deep red with a gold ring, as YouTube is in the design. */
+.tile.focus { background: #7A1019; border-color: #9A2A33; outline-color: var(--ring);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 24px 60px rgba(40,0,0,.45); }
+.tile.focus .ico { background: rgba(243,230,216,.12); border-color: transparent; }
+.tile.focus .ico svg { stroke: var(--text); }
+.tile.focus .ico .f { fill: var(--text); }

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Noel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <!-- Drawn once behind everything: snowy hills and pines, a string of lights, the moon. -->
+  <svg class="deco hills" aria-hidden="true" width="1920" height="360" viewBox="0 0 1920 360">
+    <path d="M0 210 C 300 130 560 170 820 210 C 1100 255 1380 140 1920 190 L1920 360 L0 360 Z" fill="#2B4A8C"></path>
+    <g fill="#16305F">
+      <path d="M150 190 l40 -110 l40 110 z"></path><path d="M120 230 l70 -120 l70 120 z"></path>
+      <path d="M1620 170 l34 -96 l34 96 z"></path><path d="M1594 205 l60 -104 l60 104 z"></path>
+      <path d="M1730 200 l26 -76 l26 76 z"></path><path d="M1712 228 l44 -80 l44 80 z"></path>
+    </g>
+    <g fill="#E5303A"><circle cx="175" cy="200" r="6"></circle><circle cx="205" cy="160" r="5"></circle><circle cx="1640" cy="180" r="6"></circle><circle cx="1668" cy="150" r="5"></circle><circle cx="1745" cy="210" r="5"></circle></g>
+    <path d="M0 320 C 360 290 700 305 1000 322 C 1300 340 1600 296 1920 312 L1920 360 L0 360 Z" fill="#E9F0FF"></path>
+  </svg>
+  <svg class="deco lights" aria-hidden="true" width="1920" height="120" viewBox="0 0 1920 120">
+    <path d="M0 6 Q 240 96 480 6 Q 720 96 960 6 Q 1200 96 1440 6 Q 1680 96 1920 6" fill="none" stroke="#1B2E22" stroke-width="3"></path>
+    
+  </svg>
+  <!-- The bulbs are HTML, not SVG: each fades on its own GPU layer, so the twinkle never repaints the string. -->
+  <div class="deco bulbs" aria-hidden="true"><span class="l b0" style="left: 60px; top: 38px; --c: #E5303A"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b1" style="left: 120px; top: 52px; --c: #FFD27A"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b2" style="left: 180px; top: 60px; --c: #3FB56B"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b0" style="left: 240px; top: 63px; --c: #E5303A"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b1" style="left: 300px; top: 60px; --c: #FFFFFF"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b2" style="left: 360px; top: 52px; --c: #3FB56B"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b0" style="left: 420px; top: 38px; --c: #E5303A"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b1" style="left: 540px; top: 38px; --c: #FFD27A"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b2" style="left: 600px; top: 52px; --c: #3FB56B"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b0" style="left: 660px; top: 60px; --c: #E5303A"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b1" style="left: 720px; top: 63px; --c: #FFFFFF"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b2" style="left: 780px; top: 60px; --c: #3FB56B"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b0" style="left: 840px; top: 52px; --c: #E5303A"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b1" style="left: 900px; top: 38px; --c: #FFD27A"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b2" style="left: 1020px; top: 38px; --c: #3FB56B"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b0" style="left: 1080px; top: 52px; --c: #E5303A"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b1" style="left: 1140px; top: 60px; --c: #FFFFFF"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b2" style="left: 1200px; top: 63px; --c: #3FB56B"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b0" style="left: 1260px; top: 60px; --c: #E5303A"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b1" style="left: 1320px; top: 52px; --c: #FFD27A"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b2" style="left: 1380px; top: 38px; --c: #3FB56B"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b0" style="left: 1500px; top: 38px; --c: #E5303A"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b1" style="left: 1560px; top: 52px; --c: #FFFFFF"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b2" style="left: 1620px; top: 60px; --c: #3FB56B"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b0" style="left: 1680px; top: 63px; --c: #E5303A"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b1" style="left: 1740px; top: 60px; --c: #FFD27A"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b2" style="left: 1800px; top: 52px; --c: #3FB56B"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span><span class="l b0" style="left: 1860px; top: 38px; --c: #E5303A"><span class="glow"></span><span class="cap"></span><span class="bulb"></span></span></div>
+  <svg class="deco moon" aria-hidden="true" width="300" height="300" viewBox="0 0 300 300">
+    <circle cx="150" cy="150" r="70" fill="#FFF3D6"></circle>
+    <circle cx="150" cy="150" r="110" fill="rgba(255, 243, 214, 0.12)"></circle>
+    <circle cx="150" cy="150" r="148" fill="rgba(255, 243, 214, 0.06)"></circle>
+  </svg>
+
+  <div class="bar">
+    <div class="hello"><svg width="30" height="30" viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.2 5.8 20.9l1.6-7L2 9.2l7.1-.6z" fill="#FFD27A"/></svg><span>Giáng sinh an lành, <span data-owner>Yên Đặng</span></span></div>
+    <div class="btns">
+      <div class="btn off" data-nav="top" data-action="music" aria-label="Nhạc">
+        <svg class="mus" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle class="h" cx="6" cy="18" r="3"/><circle class="h" cx="18" cy="16" r="3"/></svg>
+      </div>
+      <div class="btn" data-nav="top" data-action="themes" aria-label="Giao diện">
+        <svg class="pal" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path class="t" d="M12 3a9 9 0 0 1 0 18z"/></svg>
+      </div>
+      <div class="btn" data-nav="top" data-action="wifi" aria-label="Wi-Fi">
+        <svg class="wifi" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path class="w3" d="M2 8.5a15 15 0 0 1 20 0"/><path class="w2" d="M5.5 12.5a10 10 0 0 1 13 0"/><path class="w1" d="M9 16.3a5 5 0 0 1 6 0"/><circle class="w0" cx="12" cy="20" r="1.2" stroke="none"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="mast">
+    <div class="clock" id="clock"></div>
+    <div class="day">
+      <div class="wk" id="weekday"></div>
+      <div class="dt" id="dateText"></div>
+    </div>
+  </div>
+
+  <div class="blocks">
+    <section class="block cal" id="cal">
+      <div class="top"><h2 id="calTitle"></h2><span id="calSpan"></span></div>
+      <div class="wd"><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span></div>
+      <div class="grid" id="calGrid"></div>
+    </section>
+
+    <section class="block xmas" aria-label="Đếm ngược Giáng sinh">
+      <svg class="tree" width="245" height="368" viewBox="0 0 240 360"><g fill="#EAF2FF"><path d="M120 40 L178 130 Q 120 152 62 130 Z"/><path d="M120 88 L204 190 Q 120 212 36 190 Z"/><path d="M120 138 L226 252 Q 120 274 14 252 Z"/><path d="M120 190 L248 314 Q 120 336 -8 314 Z"/><rect x="108" y="318" width="24" height="36" rx="3"/><path d="M120 6 l6.5 13.2 14.5 2.1-10.5 10.2 2.5 14.5L120 39.2l-13 6.8 2.5-14.5-10.5-10.2 14.5-2.1z"/></g><g fill="#0E1A3A"><circle cx="100" cy="110" r="5"/><circle cx="146" cy="170" r="5"/><circle cx="92" cy="226" r="5"/><circle cx="158" cy="282" r="5"/><circle cx="120" cy="150" r="4"/><circle cx="70" cy="290" r="4"/></g></svg>
+      <div class="head">
+        <svg width="56" height="56" viewBox="0 0 56 56"><path d="M28 6 L44 28 H36 L48 44 H8 L20 28 H12 Z" fill="#2E8B57"/><rect x="24" y="44" width="8" height="8" rx="1" fill="#8B5A2B"/><path d="M28 1 l2.4 4.8 5.2.6-3.8 3.6 1 5.2L28 12.6l-4.8 2.6 1-5.2-3.8-3.6 5.2-.6z" fill="#FFD27A"/><circle cx="22" cy="24" r="2.6" fill="#E5303A"/><circle cx="33" cy="33" r="2.6" fill="#E5303A"/><circle cx="20" cy="39" r="2.6" fill="#FFD27A"/><circle cx="38" cy="40" r="2.6" fill="#E5303A"/></svg>
+        <div>
+          <h2 id="xmasName"></h2>
+          <div class="sub" id="xmasDate"></div>
+        </div>
+      </div>
+      <div class="count"><span class="n" id="xmasDays"></span><span class="l" id="xmasLabel"></span></div>
+    </section>
+  </div>
+
+  <nav class="dock">
+    <div class="tile" data-nav="dock" data-pkg="com.google.android.youtube.tv">
+      <span class="ico"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path class="f" d="M10 9l5 3-5 3z"/></svg></span>
+      <span>YouTube</span>
+    </div>
+    <div class="tile" data-nav="dock" data-pkg="com.android.vending">
+      <span class="ico"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linejoin="round"><path d="M4 8h16l-1.5 13h-13z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/><path class="f" d="M10.5 12l4 2.5-4 2.5z"/></svg></span>
+      <span>Cửa hàng</span>
+    </div>
+    <div class="tile" data-nav="dock" data-action="settings">
+      <span class="ico"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/><circle cx="12" cy="12" r="6.5"/></svg></span>
+      <span>Cài đặt</span>
+    </div>
+    <div class="tile" data-nav="dock" data-action="apps">
+      <span class="ico"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg></span>
+      <span>Ứng dụng</span>
+    </div>
+  </nav>
+</div>
+<script src="../../core.js"></script>
+<script src="noel.js"></script>
+</body>
+</html>

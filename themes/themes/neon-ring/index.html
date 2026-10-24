@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Neon Ring</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <div class="bar">
+    <span class="hello">Xin chào, <span data-owner>Yên Đặng</span></span>
+    <div class="btns">
+      <div class="btn" data-nav="top" data-action="themes" aria-label="Giao diện">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F5F5F5" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="#F5F5F5"/></svg>
+      </div>
+      <div class="btn" data-nav="top" data-action="wifi" aria-label="Wi-Fi">
+        <svg class="wifi" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path class="w3" d="M2 8.5a15 15 0 0 1 20 0"/><path class="w2" d="M5.5 12.5a10 10 0 0 1 13 0"/><path class="w1" d="M9 16.3a5 5 0 0 1 6 0"/><circle class="w0" cx="12" cy="20" r="1.2" stroke="none"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <section class="hero" aria-label="Hôm nay">
+      <div class="head"><span class="kicker">HÔM NAY</span><span class="badge" id="weekday"></span></div>
+      <div class="dial">
+        <svg width="480" height="480" viewBox="0 0 480 480">
+          <circle cx="240" cy="240" r="220" fill="none" stroke="rgba(10,10,10,.14)" stroke-width="26"/>
+          <circle id="dayRing" cx="240" cy="240" r="220" fill="none" stroke="#0A0A0A" stroke-width="26" stroke-linecap="round" stroke-dasharray="0 1382.3" transform="rotate(-90 240 240)"/>
+        </svg>
+        <div class="face">
+          <div class="clock" id="clock"></div>
+          <div class="pct"><span id="dayPct"></span>% ngày đã qua</div>
+        </div>
+      </div>
+      <div class="foot">
+        <div class="big" id="dayNum"></div>
+        <div class="when">
+          <div class="my" id="monthYear"></div>
+          <div class="lunar">Âm lịch <span id="lunarShort"></span> · <span id="ccYearName"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="side">
+      <section class="card cal" id="cal">
+        <div class="top"><h2 id="calTitle"></h2><span class="unit" id="calSpan"></span></div>
+        <div class="wd"><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span></div>
+        <div class="grid" id="calGrid"></div>
+      </section>
+
+      <div class="prices">
+        <section class="card gold">
+          <div class="top"><h2>Giá vàng</h2><span class="unit">Triệu / lượng</span></div>
+          <div class="rows">
+            <div><div class="k">SJC</div><div class="v" id="sjc">–</div></div>
+            <div><div class="k">Nhẫn 999.9</div><div class="v" id="ring">–</div></div>
+          </div>
+        </section>
+        <section class="card fuel">
+          <div class="top"><h2>Xăng dầu</h2><span class="unit">Đồng / lít</span></div>
+          <div class="rows">
+            <div class="r"><span class="k">E10 RON95</span><span class="v" id="e10">–</span></div>
+            <div class="r"><span class="k">E5 RON92</span><span class="v" id="e5">–</span></div>
+            <div class="r"><span class="k">Dầu DO</span><span class="v" id="do">–</span></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- The tiles run the stage's full width, under both the neon card and the rest. -->
+  <nav class="dock">
+    <div class="tile" data-nav="dock" data-pkg="com.google.android.youtube.tv">
+      <span class="ico"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#F5F5F5" stroke-width="2" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="#F5F5F5"/></svg></span>
+      <span class="name">YouTube</span>
+    </div>
+    <div class="tile" data-nav="dock" data-pkg="com.android.vending">
+      <span class="ico"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#F5F5F5" stroke-width="2" stroke-linejoin="round"><path d="M4 8h16l-1.5 13h-13z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/><path d="M10.5 12l4 2.5-4 2.5z" fill="#F5F5F5"/></svg></span>
+      <span class="name">Cửa hàng</span>
+    </div>
+    <div class="tile" data-nav="dock" data-action="settings">
+      <span class="ico"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#F5F5F5" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/><circle cx="12" cy="12" r="6.5"/></svg></span>
+      <span class="name">Cài đặt</span>
+    </div>
+    <div class="tile" data-nav="dock" data-action="apps">
+      <span class="ico"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#F5F5F5" stroke-width="2" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg></span>
+      <span class="name">Ứng dụng</span>
+    </div>
+  </nav>
+</div>
+<script src="../../core.js"></script>
+<script src="ring.js"></script>
+</body>
+</html>
